@@ -1,3 +1,3 @@
 # mineskin.org
 
-Source of the [mineskin.org](https://mineskin.org) website.
+[mineskin.org](https://mineskin.org)网站源码.
