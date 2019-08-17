@@ -87,9 +87,9 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             },
             data: {
                 meta: {
-                    title: "MineSkin - Custom Skin Generator",
+                    title: "MineSkin - 创建自定义皮肤 - 中文",
                     titleSuffix: "",
-                    image: "https://mineskin.org/favicon.png"
+                    image: "favicon.png"
                 }
             }
         })
@@ -129,8 +129,8 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             }],
             data: {
                 meta: {
-                    title: "Stats",
-                    image: "https://mineskin.org/favicon.png"
+                    title: "统计数据",
+                    image: "favicon.png"
                 }
             }
         })
@@ -148,8 +148,8 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             },
             data: {
                 meta: {
-                    title: "Gallery",
-                    image: "https://mineskin.org/favicon.png"
+                    title: "画廊",
+                    image: "favicon.png"
                 }
             }
         })
@@ -195,8 +195,8 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             },
             data: {
                 meta: {
-                    title: "Account",
-                    image: "https://mineskin.org/favicon.png"
+                    title: "账户",
+                    image: "favicon.png"
                 }
             }
         })
@@ -207,8 +207,8 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
 
     ngMetaProvider.useTitleSuffix(true);
     ngMetaProvider.setDefaultTitleSuffix(" | MineSkin");
-    ngMetaProvider.setDefaultTitle("MineSkin - Custom Skin Generator");
-    ngMetaProvider.setDefaultTag("image", "https://mineskin.org/favicon.png");
+    ngMetaProvider.setDefaultTitle("MineSkin - 自定义皮肤生成器");
+    ngMetaProvider.setDefaultTag("image", "favicon.png");
 
 });
 mineskinApp.run(['$transitions', '$rootScope', 'ngMeta', function ($transitions, $rootScope, ngMeta) {
@@ -255,7 +255,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
 
         if ($scope.skinUrl) {
             $scope.generating = true;
-            var genAlert = $scope.addAlert("Generating Skin from URL...", "info", 15000);
+            var genAlert = $scope.addAlert("从URL生成皮肤中...", "info", 15000);
             setTimeout(function () {
                 $http({
                     url: apiBaseUrl + "/generate/url?url=" + $scope.skinUrl + "&name=" + $scope.skinName + "&model=" + $scope.skinModel + "&visibility=" + ($scope.privateUpload ? 1 : 0),
@@ -274,7 +274,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
             }, 500);
         } else if ($scope.skinUpload) {
             $scope.generating = true;
-            var genAlert = $scope.addAlert("Uploading Skin...", "info", 15000);
+            var genAlert = $scope.addAlert("上传皮肤中...", "info", 15000);
             setTimeout(function () {
                 Upload.upload({
                     url: apiBaseUrl + "/generate/upload?name=" + $scope.skinName + "&model=" + $scope.skinModel + "&visibility=" + ($scope.privateUpload ? 1 : 0),
@@ -297,7 +297,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
             var skinUuid;
 
             function generateUser(uuid) {
-                var genAlert = $scope.addAlert("Loading skin data...", "info", 15000);
+                var genAlert = $scope.addAlert("加载皮肤数据...", "info", 15000);
                 setTimeout(function () {
                     $http({
                         url: apiBaseUrl + "/generate/user/" + uuid + "?name=" + $scope.skinName + "&model=" + $scope.skinModel + "&visibility=" + ($scope.privateUpload ? 1 : 0),
@@ -322,16 +322,16 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
                     generateUser(skinUuid);
                 }
             } else {
-                var validateAlert = $scope.addAlert("Validating Username...", "info", 10000);
+                var validateAlert = $scope.addAlert("验证用户名...", "info", 10000);
                 $.ajax({
                     url: apiBaseUrl + "/validate/user/" + $scope.skinUser,
                     success: function (data) {
                         if (data.valid) {
-                            $scope.addAlert("Username is valid", "success", 1000);
+                            $scope.addAlert("用户名有效", "success", 1000);
                             skinUuid = data.uuid;
                             generateUser(skinUuid);
                         } else {
-                            $scope.addAlert("Username is not valid", "danger", 10000);
+                            $scope.addAlert("无效用户名", "danger", 10000);
                         }
                         validateAlert.close();
                     }
@@ -342,7 +342,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
     $scope.generateSuccess = function (data, genAlert) {
         $scope.generating = false;
         $scope.generateAttempt = 0;
-        var successAlert = $scope.addAlert("Skin Generated!", "success", 10000);
+        var successAlert = $scope.addAlert("皮肤已生成!", "success", 10000);
         if (genAlert) {
             genAlert.close();
         }
@@ -366,7 +366,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
     $scope.generateError = function (message, genAlert) {
         // $scope.generating = false;
         $scope.generateAttempt++;
-        $scope.addAlert("Failed to generate Skin: " + message, "danger", 2000);
+        $scope.addAlert("生成皮肤失败: " + message, "danger", 2000);
         if (genAlert) {
             genAlert.close();
         }
@@ -376,7 +376,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
             return;
         }
         $timeout(function () {
-            Materialize.toast("Waiting 5 seconds and trying again...", 5000);
+            Materialize.toast("5秒后重试...", 5000);
             $timeout(function () {
                 $scope.generate();
             }, 7000 + ($scope.generatorDelay * 1000));
@@ -844,9 +844,9 @@ mineskinApp.controller("skinController", ["$scope", "$timeout", "$http", "$state
 
     /* +Head */
     $scope.head = {
-        pageTitle: "MineSkin - Custom Skin Generator",
+        pageTitle: "MineSkin - 自定义皮肤生成器",
         pageIcon: "favicon.png",
-        pageDescription: "MineSkin.org allows you to generate skin texture data for Minecraft which is signed by Mojang."
+        pageDescription: "MineSkin.org能够为你创建Minecraft纹理数据."
     };
     /* -Head */
 
