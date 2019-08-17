@@ -4,8 +4,8 @@
         <div class="row">
             <h1>MineSkin Account Manager</h1>
             <p>
-                On this site, you can add your own Minecraft account to speed up the MineSkin skin generation.<br/>
-                You can also manage accounts you already registered.<br/>
+                在这个页面上，您可以添加自己的Minecraft帐户来加速MineSkin的皮肤生成.<br/>
+                你也可以管理你已注册的账户.<br/>
             </p>
         </div>
         <br/>
@@ -13,53 +13,53 @@
 
         <div class="row">
             <div ng-show="!loggedIn">
-                <h4>Please log in using your Minecraft account data</h4>
-                <span>(This is just to check your account information and will not be stored until you decide to actually add your account.)</span>
+                <h4>请登录以使用你的Minecraft数据</h4>
+                <span>(这只会检查您的帐户信息，在您决定添加帐户之前不会存储.)</span>
                 <br/>
 
                 <form ng-submit="doLogin()" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="username" type="email" class="validate" ng-model="username" required>
-                            <label for="username">Username (E-Mail)</label>
+                            <label for="username">用户名 (邮箱)</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="password" type="password" class="validate" ng-model="password" required>
-                            <label for="password">Password</label>
+                            <label for="password">密码</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit">Login</button>
+                        <button class="btn waves-effect waves-light" type="submit">登录</button>
                     </div>
                 </form>
             </div>
             <div ng-show="loggedIn">
-                <h2>Logged In!</h2>
+                <h2>登录成功!</h2>
                 <hr/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div ng-show="!challengesSolved" ng-hide="!loggedIn">
-                <h4>Please enter the answer to your security questions</h4>
+                <h4>请输入你的安全提问答案</h4>
                 <h6>Make sure the answer to <b>every question is the same</b> (<a href="https://account.mojang.com/me/changeSecretQuestions" target="_blank">Click here to change them</a>)</h6>
                 <form ng-submit="solveChallenges()" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="securityAnswer" type="text" class="validate" ng-model="securityAnswer">
-                            <label for="securityAnswer">Security Answer</label>
+                            <label for="securityAnswer">安全提问</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <span>If your account doesn't have any security questions enabled, you can <a href="#" ng-click="skipChallenges()"><strong>skip to the next step</strong></a>.</span>
+                        <span>如果你的账户没有开启安全提问, 你可以 <a href="#" ng-click="skipChallenges()"><strong>跳过下一步</strong></a>.</span>
                     </div>
 
                     <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit">Submit</button>
+                        <button class="btn waves-effect waves-light" type="submit">提交</button>
                     </div>
                 </form>
             </div>
@@ -71,10 +71,10 @@
         <br/>
         <div class="row">
             <div ng-hide="!challengesSolved || (user&&userProfile)">
-                <h4>Loading user data...</h4>
+                <h4>加载用户数据...</h4>
             </div>
             <div ng-show="user && userProfile && userProfile.uuid">
-                <h2>User data loaded!</h2>
+                <h2>用户数据已加载!</h2>
                 <div>
                     <span><strong>Email: </strong> {{ user.username }}<br/></span>
                     <span><strong>UUID: </strong> {{ userProfile.uuid }}<br/></span>
@@ -89,51 +89,51 @@
         <br/>
         <div class="row" ng-show="!accountExists"><!-- Account add form -->
             <div ng-show="!accountAdded" ng-hide="!user || !userProfile || !userProfile.uuid || (user.legacyUser || userProfile.legacyProfile || userProfile.suspended)">
-                <h4>Click the button below to add your account to the MineSkin database.</h4>
-                <span><i>By clicking the button, you accept the terms and risks below.</i></span>
+                <h4>点击这里将你的账户添加到 MineSkin 数据库.</h4>
+                <span><i>通过点击按钮，你将同意使用条款.</i></span>
 
                 <div class="row">
-                    <button class="btn waves-effect waves-light" type="submit" ng-click="submitAccount()">Add Account!</button>
+                    <button class="btn waves-effect waves-light" type="submit" ng-click="submitAccount()">添加账户!</button>
                 </div>
 
                 <br/>
                 <p>
-                    By adding your account, you agree that MineSkin will have access to your full account data, including username, password, etc..<br/>
-                    Your password <i>will</i> be stored in the MineSkin database but it will be encrypted first and cannot be read by humans (also in the improbable event of a database breach).<br/>
+                    通过添加你的账户, 你同意 MineSkin 将拥有你的完整帐户信息, 包括 用户名, 密码, 等..<br/>
+                    你的密码 <i>will</i> 将会存储在 MineSkin 数据库中但是会被立即加密 (also in the improbable event of a database breach).<br/>
                     The skin of your account will be changed in irregular intervals in order to generate the skin data for MineSkin.<br/>
-                    You can always remove or temporarily disable your account.<br/>
+                    您随时可以删除或暂时停用您的帐户.<br/>
                 </p>
             </div>
             <div ng-show="accountAdded">
-                <h2>Your Account has been added!</h2>
-                <h4>Thank you very much for your contribution to the MineSkin project! <3</h4>
+                <h2>你的账户已被添加!</h2>
+                <h4>非常感谢您对MineSkin项目的支持! <3</h4>
                 <br/>
-                <span><a href="#" onclick="location.reload()">reload the page</a> and login to manage your account</span>
+                <span><a href="#" onclick="location.reload()">刷新页面</a>来登录并管理你的账户</span>
             </div>
         </div>
         <div class="row" ng-show="accountExists"><!-- Account management -->
-            <h4>Manage Account</h4>
+            <h4>账户管理</h4>
             <div>
                 <br/>
                 <div class="row">
-                    <h6>Account Status</h6>
+                    <h6>帐户状态</h6>
                     <div class="row">
-                        <span><strong>Enabled:</strong> {{ accountEnabled }}<br/></span>
-                        <span><strong>Success Rate:</strong> {{ myAccount.successRate*100 }}%<br/></span>
+                        <span><strong>已启用:</strong> {{ accountEnabled }}<br/></span>
+                        <span><strong>成功率:</strong> {{ myAccount.successRate*100 }}%<br/></span>
                     </div>
                     <div class="col s3 offset-s3">
-                        <button class="btn waves-effect waves-light green" ng-disabled="accountEnabled" ng-click="enableAccount()">Enable Account</button>
+                        <button class="btn waves-effect waves-light green" ng-disabled="accountEnabled" ng-click="enableAccount()">启用账户</button>
                     </div>
                     <div class="col s3">
-                        <button class="btn waves-effect waves-light orange" ng-disabled="!accountEnabled" ng-click="disableAccount()">Disable Account</button>
+                        <button class="btn waves-effect waves-light orange" ng-disabled="!accountEnabled" ng-click="disableAccount()">禁用账户</button>
                     </div>
                 </div>
                 <br/>
                 <br/>
                 <div class="row">
                     <div class="row">
-                        <button class="btn waves-effect waves-light red" ng-disabled="accountEnabled" ng-click="deleteAccount()">Delete Account</button>
-                        <br/><span ng-show="accountEnabled" style="color:red">Please disable your account first to delete it</span>
+                        <button class="btn waves-effect waves-light red" ng-disabled="accountEnabled" ng-click="deleteAccount()">删除账户</button>
+                        <br/><span ng-show="accountEnabled" style="color:red">请先禁用你的账户</span>
                     </div>
                 </div>
             </div>
