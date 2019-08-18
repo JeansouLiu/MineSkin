@@ -67,21 +67,21 @@
                 <div class="col s9" style="z-index:1;">
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="textureValue">Texture Data</label>
+                            <label for="textureValue">纹理数据</label>
                             <input type="text" readonly id="textureValue" ng-model="skin.data.texture.value">
                             <button class="btn tooltipped" data-clipboard-target="#textureValue"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="textureSignature">Texture Signature</label>
+                            <label for="textureSignature">纹理签名</label>
                             <input type="text" readonly id="textureSignature" ng-model="skin.data.texture.signature">
                             <button class="btn tooltipped" data-clipboard-target="#textureSignature"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="textureUrl">Texture URL</label>
+                            <label for="textureUrl">纹理URL</label>
                             <input type="text" readonly id="textureUrl" ng-model="skin.data.texture.url">
                             <button class="btn tooltipped" data-clipboard-target="#textureUrl"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
@@ -90,8 +90,8 @@
                         <div class="col s12">
                             <br>
 
-                            <a href="https://minecraft.net/profile/skin/remote?url={{skin.data.texture.url}}" target="_blank">Use this Skin</a><br/>
-                            <a href="{{skin.data.texture.url}}" target="_blank">Download Skin</a> (Right-Click &gt; Save as)
+                            <a href="https://minecraft.net/profile/skin/remote?url={{skin.data.texture.url}}" target="_blank">使用此皮肤</a><br/>
+                            <a href="{{skin.data.texture.url}}" target="_blank">下载皮肤</a> (右键 &gt; 另存为)
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
             <br/>
 
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- mineskin view -->
+            <!-- mineskin 预览 -->
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-2604356629473365"
@@ -114,17 +114,17 @@
             <br/>
 
             <div class="row card-panel">
-                <h5 id="vanilla">Vanilla /give Command</h5>
+                <h5 id="vanilla">原版 /give 指令</h5>
                 <div class="col s12">
                     <div>
                         <div class="row">
                             <div>
                                 <div class="switch">
                                     <label>
-                                        1.12 and older
+                                        1.12以前的版本
                                         <input type="checkbox" ng-model="useNewGiveCommand">
                                         <span class="lever"></span>
-                                        1.13 and newer
+                                        1.13以上的版本
                                     </label>
                                 </div>
                             </div>
@@ -132,14 +132,14 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <div ng-hide="useNewGiveCommand">
-                                    <label for="giveCommandOld">Skull /give Command</label>
+                                    <label for="giveCommandOld">头颅 /give 指令</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommandOld" class="materialize-textarea" readonly>/give @p minecraft:skull 1 3 { SkullOwner:{ Id:{{skin.data.uuid}}, Properties:{ textures:[{ Value:"{{skin.data.texture.value}}", Signature:"{{skin.data.texture.signature}}" }] } }, display:{ Name:"{{ skin.name || '#' + skin.id}}", Lore:[ "Skin #{{skin.id}}", "generated on {{(skin.timestamp*1000 | date : "medium")}}", "via MineSkin.org" ] } }</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandOld"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandOld"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                                 <div ng-show="useNewGiveCommand">
-                                    <label for="giveCommandNew">Player Head /give Command</label>
+                                    <label for="giveCommandNew">玩家头颅 /give 指令</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommandNew" class="materialize-textarea" readonly>/give @p minecraft:player_head{ SkullOwner:{ Id:{{skin.data.uuid}}, Properties:{ textures:[{ Value:"{{skin.data.texture.value}}", Signature:"{{skin.data.texture.signature}}" }] } }, display:{ Name:"{{ skin.name || '#' + skin.id}}", Lore:[ "Skin #{{skin.id}}", "generated on {{(skin.timestamp*1000 | date : "medium")}}", "via MineSkin.org" ] } }</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandNew"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandNew"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
             </div>
 
             <div class="row card-panel">
-                <h5 id="java">Java Code</h5>
+                <h5 id="java">Java代码</h5>
                 <div class="col s12">
                     <div>
                         <div class="row">
@@ -158,7 +158,7 @@
 GameProfile skin{{skin.id}} = new GameProfile(UUID.fromString("{{skin.data.uuid}}"), "skin{{skin.id}}");
 skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin.data.texture.value}}", "{{skin.data.texture.signature}}"));
             </textarea>
-                                <button class="btn tooltipped" data-clipboard-target="#javaGameProfile"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy</button>
+                                <button class="btn tooltipped" data-clipboard-target="#javaGameProfile"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制代码</button>
                             </div>
                         </div>
                     </div>
@@ -166,14 +166,14 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
             </div>
 
             <div class="row card-panel">
-                <h5 id="citizens">Citizens Skin Command</h5>
+                <h5 id="citizens">Citizens皮肤指令</h5>
                 <div class="col s12">
                     <div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="citizensCommand">Citizens /npc skin Command</label>
+                                <label for="citizensCommand">Citizens /npc skin 指令</label>
                                 <textarea style="min-height: 150px;max-width:100%;" id="citizensCommand" class="materialize-textarea" readonly>/npc skin -t {{ skin.data.uuid }} {{ skin.data.texture.value }} {{ skin.data.texture.signature }}</textarea>
-                                <button class="btn tooltipped" data-clipboard-target="#citizensCommand"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy</button>
+                                <button class="btn tooltipped" data-clipboard-target="#citizensCommand"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                             </div>
                         </div>
                     </div>
@@ -184,11 +184,11 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
 
             <div class="row">
                 <div class="pull-left">
-                    {{skin.views}} views
+                    {{skin.views}} 次查看
                 </div>
                 <div class="pull-right">
                     <div ng-show="skin.accountId > 0 && skin.timestamp > 0" class="text-muted">
-                        Generated on {{(skin.timestamp*1000 | date : "medium")}} by account #{{skin.accountId}} {{ (skin.timestamp>1504564600?"in "+(skin.duration/1000.0)+"s":"") }}
+                        生成于 {{(skin.timestamp*1000 | date : "medium")}} 通过账户 #{{skin.accountId}} {{ (skin.timestamp>1504564600?"in "+(skin.duration/1000.0)+"s":"") }}
                     </div>
                 </div>
             </div>
