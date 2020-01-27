@@ -1,11 +1,16 @@
 <div class="row">
+    <style>
+        .obviousLabel{
+            color: black !important;
+        }
+    </style>
     <br/>
     <div class="center col s6 offset-s3">
         <div class="row">
-            <h1>MineSkin Account Manager</h1>
+            <h1>MineSkin ÕË»§¹ÜÀí</h1>
             <p>
-                åœ¨è¿™ä¸ªé¡µé¢ä¸Šï¼Œæ‚¨å¯ä»¥æ·»åŠ è‡ªå·±çš„Minecraftå¸æˆ·æ¥åŠ é€ŸMineSkinçš„çš®è‚¤ç”Ÿæˆ.<br/>
-                ä½ ä¹Ÿå¯ä»¥ç®¡ç†ä½ å·²æ³¨å†Œçš„è´¦æˆ·.<br/>
+                ÔÚÕâÀï, Äã¿ÉÒÔÌí¼ÓÄã×Ô¼ºµÄ Minecraft ÕË»§À´¼ÓËÙÆ¤·ôÊı¾İµÄÉú³É.<br/>
+                ÄãÒ²¿ÉÒÔ¹ÜÀíÄãÒÑ¾­×¢²áµÄÕË»§.<br/>
             </p>
         </div>
         <br/>
@@ -13,68 +18,75 @@
 
         <div class="row">
             <div ng-show="!loggedIn">
-                <h4>è¯·ç™»å½•ä»¥ä½¿ç”¨ä½ çš„Minecraftæ•°æ®</h4>
-                <span>(è¿™åªä¼šæ£€æŸ¥æ‚¨çš„å¸æˆ·ä¿¡æ¯ï¼Œåœ¨æ‚¨å†³å®šæ·»åŠ å¸æˆ·ä¹‹å‰ä¸ä¼šå­˜å‚¨.)</span>
+                <h4>ÇëµÇÂ¼ÄãµÄ Minecraft ÕËºÅ</h4>
+                <span>(This is just to check your account information and will not be stored until you decide to actually add your account.)</span>
+                <br/>
+
+                <br/>
+                <div>
+                    <input type="checkbox" ng-model="checkUnderstoodLogin" id="checkUnderstoodLogin"/>
+                    <label for="checkUnderstoodLogin" class="obviousLabel">ÎÒÃ÷°×ÎÒ <b>²»±Ø</b> µÇÂ¼</label>
+                </div>
                 <br/>
 
                 <form ng-submit="doLogin()" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="username" type="email" class="validate" ng-model="username" required>
-                            <label for="username">ç”¨æˆ·å (é‚®ç®±)</label>
+                            <input id="username" type="email" class="validate" ng-disabled="!checkUnderstoodLogin" ng-model="username" required>
+                            <label for="username">ÓÃ»§Ãû (E-Mail)</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="password" type="password" class="validate" ng-model="password" required>
-                            <label for="password">å¯†ç </label>
+                            <input id="password" type="password" class="validate" ng-disabled="!checkUnderstoodLogin" ng-model="password" required>
+                            <label for="password">ÃÜÂë</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit">ç™»å½•</button>
+                        <button class="btn waves-effect waves-light" type="submit" ng-disabled="!checkUnderstoodLogin">µÇÂ¼</button>
                     </div>
                 </form>
             </div>
             <div ng-show="loggedIn">
-                <h2>ç™»å½•æˆåŠŸ!</h2>
+                <h2>ÒÑµÇÂ¼!</h2>
                 <hr/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div ng-show="!challengesSolved" ng-hide="!loggedIn">
-                <h4>è¯·è¾“å…¥ä½ çš„å®‰å…¨æé—®ç­”æ¡ˆ</h4>
+                <h4>Çë»Ø´ğ°²È«ÌáÎÊ</h4>
                 <h6>Make sure the answer to <b>every question is the same</b> (<a href="https://account.mojang.com/me/changeSecretQuestions" target="_blank">Click here to change them</a>)</h6>
                 <form ng-submit="solveChallenges()" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="securityAnswer" type="text" class="validate" ng-model="securityAnswer">
-                            <label for="securityAnswer">å®‰å…¨æé—®</label>
+                            <label for="securityAnswer">°²È«ÌáÎÊ</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <span>å¦‚æœä½ çš„è´¦æˆ·æ²¡æœ‰å¼€å¯å®‰å…¨æé—®, ä½ å¯ä»¥ <a href="#" ng-click="skipChallenges()"><strong>è·³è¿‡ä¸‹ä¸€æ­¥</strong></a>.</span>
+                        <span>Èç¹ûÄãµÄÕË»§Ã»ÓĞÉèÖÃ°²È«ÌáÎÊ, Çë <a href="#" ng-click="skipChallenges()"><strong>Ìø¹ıÏÂÒ»²½</strong></a>.</span>
                     </div>
 
                     <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit">æäº¤</button>
+                        <button class="btn waves-effect waves-light" type="submit">Ìá½»</button>
                     </div>
                 </form>
             </div>
             <div ng-show="challengesSolved">
-                <h2>Challenges Completed!</h2>
+                <h2>ÑéÖ¤³É¹¦!</h2>
                 <hr/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div ng-hide="!challengesSolved || (user&&userProfile)">
-                <h4>åŠ è½½ç”¨æˆ·æ•°æ®...</h4>
+                <h4>¼ÓÔØÓÃ»§Êı¾İÖĞ...</h4>
             </div>
             <div ng-show="user && userProfile && userProfile.uuid">
-                <h2>ç”¨æˆ·æ•°æ®å·²åŠ è½½!</h2>
+                <h2>ÓÃ»§Êı¾İ¼ÓÔØ³É¹¦!</h2>
                 <div>
                     <span><strong>Email: </strong> {{ user.username }}<br/></span>
                     <span><strong>UUID: </strong> {{ userProfile.uuid }}<br/></span>
@@ -89,51 +101,72 @@
         <br/>
         <div class="row" ng-show="!accountExists"><!-- Account add form -->
             <div ng-show="!accountAdded" ng-hide="!user || !userProfile || !userProfile.uuid || (user.legacyUser || userProfile.legacyProfile || userProfile.suspended)">
-                <h4>ç‚¹å‡»è¿™é‡Œå°†ä½ çš„è´¦æˆ·æ·»åŠ åˆ° MineSkin æ•°æ®åº“.</h4>
-                <span><i>é€šè¿‡ç‚¹å‡»æŒ‰é’®ï¼Œä½ å°†åŒæ„ä½¿ç”¨æ¡æ¬¾.</i></span>
+                <h4>Click the button below to add your account to the MineSkin database.</h4>
+                <p>
+                    By adding your account, you agree that MineSkin will have access to your full account data, including username, password, etc..<br/>
+                    Your password <i>will</i> be stored in the MineSkin database but it will be encrypted first and cannot be read by humans (also in the improbable event of a database breach).<br/>
+                    The skin of your account will be changed in irregular intervals in order to generate the skin data for MineSkin.<br/>
+                    You can always remove or temporarily disable your account.<br/>
+                </p>
+                <br/>
+
+                <div>
+                    <div>
+                        <input type="checkbox" ng-model="checkReadTerms" id="checkReadTerms"/>
+                        <label for="checkReadTerms" class="obviousLabel">ÎÒÒÑÔÄ¶ÁÉÏÊöĞ­Òé</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" ng-model="checkAcceptSkins" id="checkAcceptSkins"/>
+                        <label for="checkAcceptSkins" class="obviousLabel">ÎÒÃ÷°×ÎÒµÄÕË»§Æ¤·ô»áËæ»ú¸Ä±ä</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" ng-model="checkAcceptPassword" id="checkAcceptPassword"/>
+                        <label for="checkAcceptPassword" class="obviousLabel">I understand that Mineskin will have access to my account's credentials (username + password)</label>
+                    </div>
+                </div>
+                <br/>
 
                 <div class="row">
-                    <button class="btn waves-effect waves-light" type="submit" ng-click="submitAccount()">æ·»åŠ è´¦æˆ·!</button>
+                    <button class="btn waves-effect waves-light" type="submit" ng-disabled="!checkReadTerms || !checkAcceptSkins || !checkAcceptPassword" ng-click="submitAccount()">Ìí¼ÓÕË»§!</button>
                 </div>
 
-                <br/>
-                <p>
-                    é€šè¿‡æ·»åŠ ä½ çš„è´¦æˆ·, ä½ åŒæ„ MineSkin å°†æ‹¥æœ‰ä½ çš„å®Œæ•´å¸æˆ·ä¿¡æ¯, åŒ…æ‹¬ ç”¨æˆ·å, å¯†ç , ç­‰..<br/>
-                    ä½ çš„å¯†ç  <i>will</i> å°†ä¼šå­˜å‚¨åœ¨ MineSkin æ•°æ®åº“ä¸­ä½†æ˜¯ä¼šè¢«ç«‹å³åŠ å¯† (also in the improbable event of a database breach).<br/>
-                    The skin of your account will be changed in irregular intervals in order to generate the skin data for MineSkin.<br/>
-                    æ‚¨éšæ—¶å¯ä»¥åˆ é™¤æˆ–æš‚æ—¶åœç”¨æ‚¨çš„å¸æˆ·.<br/>
-                </p>
             </div>
             <div ng-show="accountAdded">
-                <h2>ä½ çš„è´¦æˆ·å·²è¢«æ·»åŠ !</h2>
-                <h4>éå¸¸æ„Ÿè°¢æ‚¨å¯¹MineSkiné¡¹ç›®çš„æ”¯æŒ! <3</h4>
+                <h2>ÕË»§ÒÑÌí¼Ó!</h2>
+                <h4>Thank you very much for your contribution to the MineSkin project! <3</h4>
                 <br/>
-                <span><a href="#" onclick="location.reload()">åˆ·æ–°é¡µé¢</a>æ¥ç™»å½•å¹¶ç®¡ç†ä½ çš„è´¦æˆ·</span>
+                <span><a href="#" onclick="location.reload()">Ë¢ĞÂÒ³Ãæ</a> ²¢µÇÂ¼ÒÔ¹ÜÀíÄãµÄ</span>
             </div>
         </div>
         <div class="row" ng-show="accountExists"><!-- Account management -->
-            <h4>è´¦æˆ·ç®¡ç†</h4>
+            <h4>¹ÜÀíÕË»§</h4>
             <div>
                 <br/>
                 <div class="row">
-                    <h6>å¸æˆ·çŠ¶æ€</h6>
+                    <h6>ÕË»§×´Ì¬</h6>
                     <div class="row">
-                        <span><strong>å·²å¯ç”¨:</strong> {{ accountEnabled }}<br/></span>
-                        <span><strong>æˆåŠŸç‡:</strong> {{ myAccount.successRate*100 }}%<br/></span>
+                        <span><strong>Enabled:</strong> {{ accountEnabled }}<br/></span>
+                        <span><strong>Success Rate:</strong> {{ myAccount.successRate*100 }}%<br/></span>
                     </div>
                     <div class="col s3 offset-s3">
-                        <button class="btn waves-effect waves-light green" ng-disabled="accountEnabled" ng-click="enableAccount()">å¯ç”¨è´¦æˆ·</button>
+                        <button class="btn waves-effect waves-light green" ng-disabled="accountEnabled" ng-click="enableAccount()">ÆôÓÃÕË»§</button>
                     </div>
                     <div class="col s3">
-                        <button class="btn waves-effect waves-light orange" ng-disabled="!accountEnabled" ng-click="disableAccount()">ç¦ç”¨è´¦æˆ·</button>
+                        <button class="btn waves-effect waves-light orange" ng-disabled="!accountEnabled" ng-click="disableAccount()">½ûÓÃÕË»§</button>
                     </div>
+                </div>
+                <br>
+                <div class="row">
+                    Make sure to <a href="https://yeleha.co/discord">join the Discord</a> before linking!
+                    <br/>
+                    <button class="btn waves-effect waves-light blue" ng-disabled="accountLinkedToDiscord" ng-click="linkDiscord()">Link Account to Discord</button>
                 </div>
                 <br/>
                 <br/>
                 <div class="row">
                     <div class="row">
-                        <button class="btn waves-effect waves-light red" ng-disabled="accountEnabled" ng-click="deleteAccount()">åˆ é™¤è´¦æˆ·</button>
-                        <br/><span ng-show="accountEnabled" style="color:red">è¯·å…ˆç¦ç”¨ä½ çš„è´¦æˆ·</span>
+                        <button class="btn waves-effect waves-light red" ng-disabled="accountEnabled" ng-click="deleteAccount()">É¾³ıÕË»§</button>
+                        <br/><span ng-show="accountEnabled" style="color:red">ÇëÏÈ½ûÓÃÕË»§</span>
                     </div>
                 </div>
             </div>

@@ -1,17 +1,18 @@
 <div class="container">
-    <h2>ç”Ÿæˆæ–°çš®è‚¤</h2>
+    <h2>Éú³ÉĞÂÆ¤·ô</h2>
 
     <div class="card-panel z-depth-2">
         <div class="row">
             <div class="col s12 m9">
-                <h3>é€‰æ‹©çš®è‚¤</h3>
+                <h3>Ñ¡ÔñÆ¤·ô</h3>
 
                 <form class="col s12" name="uploadForm">
                     <div class="row">
                         <div ng-show="!skinUrl && !skinUser" class="input-field file-field col s12">
                             <div ngf-drop ng-model="skinUpload" class="drop-box">
                                 <div ng-show="!skinUpload">
-                                    <a type="file" ngf-select class="btn" id="skinUpload" name="file" ng-model="skinUpload" ngf-pattern="'image/png'" ngf-accept="'image/png'" ngf-max-size="16KB" ngf-dimensions="$width == 64 && ($height == 32 || $height == 64)" ngf-run-all-validations="true" ngf-model-options="{allowInvalid: true}"><i class="fa fa-file-image-o" aria-hidden="true"></i>&nbsp; é€‰æ‹©æ–‡ä»¶
+                                    <a type="file" ngf-select class="btn" id="skinUpload" name="file" ng-model="skinUpload" ngf-pattern="'image/png'" ngf-accept="'image/png'" ngf-max-size="16KB" ngf-dimensions="$width == 64 && ($height == 32 || $height == 64)" ngf-run-all-validations="true" ngf-model-options="{allowInvalid: true}"><i class="fa fa-file-image-o" aria-hidden="true"></i>&nbsp; Ñ¡Ôñ
+                                        ÎÄ¼ş
                                     </a>
                                 </div>
                                 <div ng-show="skinUpload" style="padding-top: 4px;">
@@ -20,8 +21,8 @@
                                     <a class="btn" ng-click="skinUpload=null;">X</a>
                                 </div>
                                 <ul ng-show="uploadForm.file.$invalid">
-                                    <li ng-show="uploadForm.file.$error.dimensions">ä½ çš„å›¾åƒå°ºå¯¸æ˜¯ {{ skinUpload.$ngfWidth }}x{{ skinUpload.$ngfHeight }}, å¿…é¡»æ˜¯ 64x32 æˆ– 64x64</li>
-                                    <li ng-show="uploadForm.file.$error.maxSize">ä½ çš„å›¾ç‰‡å¤§å°æ˜¯ {{ skinUpload.size / 1000 | number: 1 }} KB, æœ€å¤§16KB</li>
+                                    <li ng-show="uploadForm.file.$error.dimensions">ÄãÉÏ´«µÄÍ¼Æ¬µÄ³ß´ç: {{ skinUpload.$ngfWidth }}x{{ skinUpload.$ngfHeight }}, ĞèÒª³ß´ç: 64x32 or 64x64</li>
+                                    <li ng-show="uploadForm.file.$error.maxSize">Í¼Æ¬´óĞ¡: {{ skinUpload.size / 1000 | number: 1 }} KB, ×î¶à 16 KB</li>
                                 </ul>
                             </div>
                         </div>
@@ -29,13 +30,13 @@
                     <div class="row">
                         <div ng-show="!skinUpload && !skinUser" class="input-field col s12">
                             <input type="url" id="skinUrl" ng-model="skinUrl" ng-required="!skinUpload && !skinUser">
-                            <label for="skinUrl" class="required-label"><i class="fa fa-link" aria-hidden="true"></i>&nbsp; å›¾ç‰‡URL</label>
+                            <label for="skinUrl" class="required-label"><i class="fa fa-link" aria-hidden="true"></i>&nbsp; Í¼Æ¬ÍøÖ·</label>
                         </div>
                     </div>
                     <div class="row">
                         <div ng-show="!skinUrl && !skinUpload" class="input-field col s12">
                             <input type="text" id="skinUser" ng-model="skinUser" ng-required="!skinUrl && !skinUpload" ng-minlength="4" ng-maxlength="36" ng-change="skinName = skinUser">
-                            <label for="skinUser" class="required-label"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Minecraftç”¨æˆ·å</label>
+                            <label for="skinUser" class="required-label"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Minecraft ÓÃ»§Ãû</label>
                         </div>
                     </div>
                 </form>
@@ -79,28 +80,28 @@
     </div>
 
     <div ng-init="refreshTimeout()" class="card-panel z-depth-2">
-        <h3>é€‰é¡¹</h3>
+        <h3>Ñ¡Ïî</h3>
 
         <div class="row">
             <form class="col s12">
                 <div class="input-field col s12">
                     <input type="text" id="skinName" ng-model="skinName">
-                    <label for="skinName">çš®è‚¤å (å¯é€‰)</label>
+                    <label for="skinName">Æ¤·ôÃû (¿ÉÑ¡)</label>
                 </div>
                 <div class="input-field col s12">
                     <select id="skinModel" ng-model="skinModel" value="steve">
                         <option value="steve">Classic (Steve)</option>
                         <option value="slim">Slim (Alex)</option>
                     </select>
-                    <label>çš®è‚¤æ¨¡å‹</label>
+                    <label>Skin Model</label>
                 </div>
                 <div>
                     <div class="switch">
                         <label>
-                            å…¬å¼€
+                            ¹«¿ª
                             <input type="checkbox" ng-model="privateUpload">
                             <span class="lever"></span>
-                            ä»…è‡ªå·±
+                            Ë½ÃÜ
                         </label>
                     </div>
                 </div>
@@ -109,9 +110,9 @@
         <div class="row">
             <div class="col s12">
                 <div class="center-align">
-                    <button class="btn" ng-disabled="generating || generatorTimeout > 0 || (!skinUrl && (!skinUpload || uploadForm.file.$invalid) && !skinUser)" ng-click="generate()">ç”Ÿæˆ!</button>
+                    <button class="btn" ng-disabled="generating || generatorTimeout > 0 || (!skinUrl && (!skinUpload || uploadForm.file.$invalid) && !skinUser)" ng-click="generate()">Éú³É!</button>
                     <br/>
-                    <span class="help-block" ng-show="generatorTimeout > 0">è¯·ç­‰ {{generatorTimeout}} ç§’...</span>
+                    <span class="help-block" ng-show="generatorTimeout > 0">ÇëµÈ´ı {{generatorTimeout}} Ãë...</span>
                     <div class="progress" ng-show="generating">
                         <div class="indeterminate"></div>
                     </div>
@@ -119,7 +120,7 @@
 
 
                 <div class="pull-right">
-                    <strong class="pull-right">åˆ†äº«</strong>
+                    <strong class="pull-right">·ÖÏí</strong>
                     <br/>
                     <link rel="me" href="https://twitter.com/MineSkinOrg">
                     <a href="https://twitter.com/share" data-show-count="false" twitter></a>
@@ -133,14 +134,14 @@
     <div class="card-panel z-depth-2" ng-init="refreshStats()">
         <div class="row">
             <div class="col s12">
-                <h4>{{ stats.total | number:0 }} ä¸ªçš®è‚¤è¢« {{ stats.accounts | number:0 }} ä¸ªè´¦æˆ·ç”Ÿæˆ</h4>
-                <a class="pull-right" ui-sref="index.stats">æ›´å¤šç»Ÿè®¡æ•°æ®</a>
+                <h4>¹² {{ stats.accounts | number:0 }} ¸öÕË»§Éú³É {{ stats.total | number:0 }} ¸öÆ¤·ô</h4>
+                <a class="pull-right" ui-sref="index.stats">¸ü¶àÊı¾İ</a>
             </div>
         </div>
     </div>
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- mineskin index footer -->
+    <!-- mineskin Ö÷Ò³Ò³½Å -->
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-2604356629473365"
