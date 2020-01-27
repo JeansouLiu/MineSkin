@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="mineskinApp" ng-controller="skinController">
     <head>
-        <title ng-bind="ngMeta.title">MineSkin_ä¸­æ–‡</title>
-        <link id="favicon" rel="icon" href="/img/mineskin-x256.png"/>
+        <title ng-bind="ngMeta.title">MineSkin</title>
+        <link id="favicon" rel="icon" href="img/mineskin-x256.png"/>
 
         <!-- SEO -->
-        <meta name="keywords" content="mineskin,skin,skull,generator,custom,head,skin,minecraft,player,playerhead,skulls,customskull,spigot,bukkit,generator,api,customblocks,çš®è‚¤,æˆ‘çš„ä¸–ç•Œ">
-        <meta name="description" content="MineSkin.orgå…è®¸æ‚¨ç”ŸæˆMojangçš®è‚¤çº¹ç†æ•°æ®.">
+        <meta name="keywords" content="Æ¤·ô,Éú³ÉÆ÷,ÎÒµÄÊÀ½ç,mineskin,skin,skull,generator,custom,head,skin,minecraft,player,playerhead,skulls,customskull,spigot,bukkit,generator,api,customblocks">
+        <meta name="description" content="MineSkin ÊÇÒ»¸ö Mojang Æ¤·ôÊı¾İÉú³ÉÆ÷.">
         <!--<update-meta name="description" content="{{head.pageDescription}}"></update-meta>-->
         <meta name="author" content="inventivetalent">
+        <meta name="translator" content="Jeansou">
 
         <meta property="og:type" content="website">
         <meta property="og:title" content="{{ ngMeta['title'] || 'MineSkin' }}">
-        <meta property="og:image" content="{{ ngMeta['image'] || '/img/mineskin-x256.png' }}">
-        <!--<update-meta property="og:image" content="{{head.pageIcon || '/img/mineskin-x256.png'}}"></update-meta>-->
-        <meta property="og:description" content="MineSkin.orgå…è®¸æ‚¨ç”ŸæˆMojangçš®è‚¤çº¹ç†æ•°æ®.">
+        <meta property="og:image" content="{{ ngMeta['image'] || 'img/mineskin-x256.png' }}">
+        <!--<update-meta property="og:image" content="{{head.pageIcon || 'https://mineskin.org/img/mineskin-x256.png'}}"></update-meta>-->
+        <meta property="og:description" content="MineSkin ÊÇÒ»¸ö Mojang Æ¤·ôÊı¾İÉú³ÉÆ÷.">
         <!--<update-meta property="og:description" content="{{head.pageDescription}}"></update-meta>-->
 
         <meta property="twitter:title" content="{{ ngMeta['title'] || 'MineSkin' }}">
-        <meta property="twitter:image" content="{{ ngMeta['image'] || 'https://mineskin.org/img/mineskin-x256.png' }}">
-        <!--<update-meta property="twitter:image" content="{{head.pageIcon || '/img/mineskin-x256.png'}}"></update-meta>-->
-        <meta property="twitter:description" content="MineSkin.orgå…è®¸æ‚¨ç”ŸæˆMojangçš®è‚¤çº¹ç†æ•°æ®.">
+        <meta property="twitter:image" content="{{ ngMeta['image'] || 'img/mineskin-x256.png' }}">
+        <!--<update-meta property="twitter:image" content="{{head.pageIcon || 'https://mineskin.org/img/mineskin-x256.png'}}"></update-meta>-->
+        <meta property="twitter:description" content="MineSkin ÊÇÒ»¸ö Mojang Æ¤·ôÊı¾İÉú³ÉÆ÷.">
         <!--<update-meta property="twitter:description" content="{{head.pageDescription}}"></update-meta>-->
         <meta property="twitter:site" content="@MineSkinOrg">
         <meta property="twitter:creator" content="@Inventivtalent">
@@ -45,7 +46,7 @@
   "@context": "http://www.schema.org",
   "@type": "WebSite",
   "name": "MineSkin",
-  "url": "https://mineskin.org"
+  "url": "http://mineskin.jeansou.com"
 }
         </script>
 
@@ -71,21 +72,20 @@
                 enable_page_level_ads: true
             });
         </script>
-    <meta charset="utf-8">
     </head>
     <body ng-cloak>
         <header>
             <nav class="nav-extended indigo">
                 <div class="nav-wrapper row">
-                    <a href="#" class="brand-logo center">MineSkin</a>
+                    <a href="http://mineskin.jeansou.com" class="brand-logo center">MineSkin</a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a class="waves-effect waves-light btn blue" href="/account">è´¦æˆ·</a></li>
+                        <li><a class="waves-effect waves-light btn blue" href="account">ÕË»§</a></li>
                     </ul>
                 </div>
                 <div class="nav-content">
                     <ul class="tabs tabs-transparent tabs-fixed-width" style="overflow-x: hidden;">
-                        <li class="tab"><a ui-sref="index()" ng-class="{'active':state.is('index')}" href="#tab1" id="tab1-trigger">ç”Ÿæˆ</a></li>
-                        <li class="tab"><a ui-sref="gallery()" ng-class="{'active':state.is('gallery')}" href="#tab2" id="tab2-trigger">ç”»å»Š</a></li>
+                        <li class="tab"><a ui-sref="index()" ng-class="{'active':state.is('index')}" href="#tab1" id="tab1-trigger">Éú³ÉÆ÷</a></li>
+                        <li class="tab"><a ui-sref="gallery()" ng-class="{'active':state.is('gallery')}" href="#tab2" id="tab2-trigger">¿â</a></li>
                     </ul>
                 </div>
             </nav>
@@ -102,41 +102,43 @@
             <div class="container">
                 <div class="row">
                     <div class="col s12 m8">
-                        <h5 class="white-text">å…³äº</h5>
+                        <h5 class="white-text">¼ò½é</h5>
                         <p class="grey-text text-lighten-4">
-                            <strong>MineSkin.org</strong> èƒ½å¤Ÿä¸ºä½ ç”Ÿæˆ Mojang <strong>çš®è‚¤çº¹ç†æ•°æ®</strong>.<br/>
-                            è¿™å¯ä»¥ç”¨æ¥ç”Ÿæˆå¤´é¢…æˆ–é€šè¿‡ä¸€äº›æ•°æ®åŒ…é­”æ³•æ”¹å˜ä½ çš„çš®è‚¤ :).<br/>
+                            <strong>MineSkin.org</strong> allows you to generate <strong>skin texture data</strong> signed by Mojang.<br/>
+                            These can be used on ingame skull blocks or to change a player's skin using some packet magic :).<br/>
                             <br/>
-                            æ­¤ç½‘ç«™å°†ä½¿ä½ æ›´æ–¹ä¾¿æ›´çœæ—¶åœ°è‡ªå®šä¹‰çš®è‚¤ï¼Œå› ä¸ºæœ‰è®¸å¤šç”¨æˆ·æèµ  &lt;3. è¿™æ ·ä½ å°†ä¸å¿…å†ä½¿ç”¨è‡ªå·±çš„Mojangè´¦æˆ·æ¥ç”Ÿæˆçš®è‚¤æ•°æ®.<br/>
-                            <strong>è¿™æ ·ä½ å°†èƒ½å¤Ÿåœ¨å‡ ç§’å†…å¾—åˆ°çš®è‚¤æ•°æ®, è€Œä¸éœ€è¦æ›´æ¢ä½ çš„çš®è‚¤.</strong><br/>
-                            å¦‚æœä½ æƒ³ä½¿è¿™æ›´å¿«, è¯· <a href="/account">ä½¿ç”¨ Account Manager</a> :) (<a href="https://github.com/MineSkin/mineskin.org/wiki/Account-Contribution" target="_blank">è¯¦ç»†ä¿¡æ¯</a>)<br/>
+                            This website makes custom skins a lot more convenient and less time consuming, since it uses multiple accounts donated by multiple awesome people &lt;3. This way, you don't have to use your own account to generate textures.<br/>
+                            <strong>This way you can get your custom textures within seconds, without going through the hassle of changing your own skin, etc.</strong><br/>
+                            If you'd like to make things even faster, please <a href="https://mineskin.org/account">use the Account Manager</a> :) (<a href="https://github.com/MineSkin/mineskin.org/wiki/Account-Contribution" target="_blank">more details</a>)<br/>
                             <br/>
                         </p>
                         <div>
                             <a href="https://www.cloudflare.com/" target="_blank"><img src="img/cf-logo-v.svg" alt="Cloudflare Logo" style="width: 200px;"></a><br/>
-                            &nbsp;&nbsp;å— <a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a>ä¿æŠ¤
+                            &nbsp;&nbsp;Protected by <a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a>
                         </div>
                     </div>
                     <div class="col s12 m2">
-                        <h5 class="white-text">å‹æƒ…é“¾æ¥</h5>
+                        <h5 class="white-text">ÓÑÇéÁ´½Ó</h5>
                         <ul>
                             <li><a class="white-text" href="https://twitter.com/MineSkinOrg" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter</a></li>
                             <li><a class="white-text" href="https://yeleha.co/discord" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
                             <li><a class="white-text" href="https://github.com/MineSkin" target="_blank"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
-                            <li><a class="white-text" href="https://www.spigotmc.org/threads/164209" target="_blank">SpigotMCé¡µé¢</a></li>
+                            <li><a class="white-text" href="https://www.spigotmc.org/threads/164209" target="_blank">SpigotMC Ò³Ãæ</a></li>
                             <br/>
-                            <li><a class="white-text" href="https://mineskin.org/account">Account Manager</a></li>
-                            <li><a class="white-text custom-dbox-popup" target="_blank" href="https://donorbox.org/mineskin">æåŠ©</a></li>
+                            <li><a class="white-text" href="account">ÕË»§¹ÜÀí</a></li>
+                            <li><a class="white-text custom-dbox-popup" target="_blank" href="https://donorbox.org/mineskin">ÔŞÖúÔ­×÷Õß</a></li>
+                            <li><a class="white-text custom-dbox-popup" target="_blank" href="https://donorbox.org/jeansou">ÔŞÖú Jeansou</a></li>
                             <br/>
-                            <li><a class="white-text" target="_blank" href="https://status.mineskin.org/">Status</a></li>
+                            <li><a class="white-text" target="_blank" href="https://status.mineskin.org/">Í³¼ÆÊı¾İ</a></li>
                             <br/>
                         </ul>
                         <div>
-                            <a href="https://www.patreon.com/bePatron?u=554075" data-patreon-widget-type="become-patron-button">èµåŠ©!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+                            <a href="https://www.patreon.com/bePatron?u=554075" data-patreon-widget-type="become-patron-button">ÔŞÖúÔ­×÷Õß!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+                            <a href="https://www.patreon.com/bePatron?u=22183810" data-patreon-widget-type="become-patron-button">ÔŞÖú Jeansou!</a>
                         </div>
                     </div>
                     <div class="col s12 m2">
-                        <h5 class="white-text">æ›´å¤šé“¾æ¥</h5>
+                        <h5 class="white-text">¸ü¶àÁ´½Ó</h5>
                         <ul>
                             <li><a class="white-text" href="https://github.com/MineSkin/api.mineskin.org/wiki/REST-API" target="_blank">RESTful API documentation</a></li>
                             <li><a class="white-text" ui-sref="index.stats">Stats</a></li>
@@ -152,9 +154,10 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    ç”± <a class="cyan-text" href="https://inventivetalent.org" target="_blank">inventivetalent</a> åˆ¶ä½œ
+                    ÓÉ <a class="cyan-text" href="https://inventivetalent.org" target="_blank">inventivetalent</a> ÖÆ×÷
+                    ÓÉ <a class="cyan-text" href="https://blog.jeansou.com" target="_blank">Jeansou</a> ·­Òë
                     <span class="pull-right">
-                        æœ¬ç½‘ç«™ä¸Minecraft/Mojang ABæ— å…³.
+                        ±¾Õ¾²»ÊôÓÚ Minecraft / Mojang AB.
                     </span>
                 </div>
             </div>
@@ -191,9 +194,9 @@
 
         <script>
             window.DOP_config = {
-                links: { // æ¢æˆä½ çš„
+                links: { // Replace with your links
                     paypal: "https://paypal.me/inventivetalent",
-                    patreon: "https://patreon.com/inventivetalent"
+                    patreon: "https://patreon.com/jeansou"
                 },
                 enableAnalytics: true
             }
