@@ -30,9 +30,6 @@
         </div>
 
         <div ng-show="skin">
-            <h4>{{ skin.name || '#' + skin.id}}
-                <small class="text-muted">{{skin.private ? "(private)" : ""}}</small>
-            </h4>
             <div class="row card-panel">
                 <div class="col s3" style="min-width: 195px; min-height: 415px; z-index:1;">
                     <div id="skinImageContainer">
@@ -49,12 +46,12 @@
                     <div id="skinRenderContainer" style="display: none;">
                         <iframe frameborder="0" src="#" id="skinRender" style="min-height:450px;max-height:500px; min-width:200px;max-width:220px;"></iframe>
                     </div>
-                    <span style="display:none" id="skinId">{{ skin.id }}</span>
+                    <span style="display:none" id="skinRenderId">{{ skin.id }}</span>
                     <script>
                         $(document).ready(function () {
                             $("#skinImage").on("load", function () {
                                 if (!/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {// disable for crawlers
-                                    $("#skinRender").attr("src", "https://minerender.org/embed/skin/?skin=https://api.mineskin.org/render/texture/" + $("#skinId").text() + "&autoResize=true&shadow=true&camera.position=-15,35,20&controls.pan=false&utm_source=mineskin&utm_medium=website&utm_campaign=skin_preview");
+                                    $("#skinRender").attr("src", "https://minerender.org/embed/skin/?skin=https://api.mineskin.org/render/texture/" + $("#skinRenderId").text() + "&autoResize=true&shadow=true&camera.position=-15,35,20&controls.pan=false&utm_source=mineskin&utm_medium=website&utm_campaign=skin_preview");
                                     $("#skinRender").on("load", function () {
                                         $("#skinImageContainer").hide();
                                         $("#skinRenderContainer").show();
@@ -67,21 +64,28 @@
                 <div class="col s9" style="z-index:1;">
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="textureValue">ÎÆÀíÊı¾İ</label>
+                            <label for="skinId">çš®è‚¤ ID</label>
+                            <input type="text" readonly id="skinId" ng-model="skin.id">
+                            <button class="btn tooltipped" data-clipboard-target="#skinId"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="textureValue">çº¹ç†æ•°æ®</label>
                             <input type="text" readonly id="textureValue" ng-model="skin.data.texture.value">
                             <button class="btn tooltipped" data-clipboard-target="#textureValue"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="textureSignature">ÎÆÀíÇ©Ãû</label>
+                            <label for="textureSignature">çº¹ç†ç­¾å</label>
                             <input type="text" readonly id="textureSignature" ng-model="skin.data.texture.signature">
                             <button class="btn tooltipped" data-clipboard-target="#textureSignature"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="textureUrl">ÎÆÀíÍøÖ·</label>
+                            <label for="textureUrl">çº¹ç†ç½‘å€</label>
                             <input type="text" readonly id="textureUrl" ng-model="skin.data.texture.url">
                             <button class="btn tooltipped" data-clipboard-target="#textureUrl"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
@@ -90,8 +94,8 @@
                         <div class="col s12">
                             <br>
 
-                            <a href="https://my.minecraft.net/profile/skin/remote?url={{skin.data.texture.url}}" target="_blank">Ê¹ÓÃÕâ¸öÆ¤·ô</a><br/>
-                            <a href="{{skin.data.texture.url}}" target="_blank">ÏÂÔØ´ËÆ¤·ô</a> (ÓÒ¼ü &gt; Áí´æÎª)
+                            <a href="https://my.minecraft.net/profile/skin/remote?url={{skin.data.texture.url}}" target="_blank">ä½¿ç”¨è¿™ä¸ªçš®è‚¤</a><br/>
+                            <a href="{{skin.data.texture.url}}" target="_blank">ä¸‹è½½æ­¤çš®è‚¤</a> (å³é”® &gt; å¦å­˜ä¸º)
                         </div>
                     </div>
                 </div>
@@ -114,17 +118,17 @@
             <br/>
 
             <div class="row card-panel">
-                <h5 id="vanilla">Ô­°æ /give Ö¸Áî</h5>
+                <h5 id="vanilla">åŸç‰ˆ /give æŒ‡ä»¤</h5>
                 <div class="col s12">
                     <div>
                         <div class="row">
                             <div>
                                 <div class="switch">
                                     <label>
-                                        1.12 ÒÔÏÂ°æ±¾
+                                        1.12 ä»¥ä¸‹ç‰ˆæœ¬
                                         <input type="checkbox" ng-model="useNewGiveCommand">
                                         <span class="lever"></span>
-                                        1.13 ÒÔÉÏ°æ±¾
+                                        1.13 ä»¥ä¸Šç‰ˆæœ¬
                                     </label>
                                 </div>
                             </div>
@@ -132,14 +136,14 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <div ng-hide="useNewGiveCommand">
-                                    <label for="giveCommandOld">Skull /give Ö¸Áî</label>
+                                    <label for="giveCommandOld">Skull /give æŒ‡ä»¤</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommandOld" class="materialize-textarea" readonly>/give @p minecraft:skull 1 3 {SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{{ skin.name || '#' + skin.id}}",Lore:["Skin #{{skin.id}}","generated on {{(skin.timestamp*1000 | date : "medium")}}","via MineSkin.jeansou.com"]}}</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandOld"><i class="fa fa-clipboard" aria-hidden="true"></i> ¸´ÖÆ</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandOld"><i class="fa fa-clipboard" aria-hidden="true"></i> å¤åˆ¶</button>
                                 </div>
                                 <div ng-show="useNewGiveCommand">
-                                    <label for="giveCommandNew">Player Head /give Ö¸Áî</label>
+                                    <label for="giveCommandNew">Player Head /give æŒ‡ä»¤</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommandNew" class="materialize-textarea" readonly>minecraft:give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"generated on {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"via MineSkin.jeansou.com\"}"]}}</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandNew"><i class="fa fa-clipboard" aria-hidden="true"></i> ¸´ÖÆ</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandNew"><i class="fa fa-clipboard" aria-hidden="true"></i> å¤åˆ¶</button>
                                 </div>
                             </div>
                         </div>
@@ -148,12 +152,12 @@
             </div>
 
             <div class="row card-panel">
-                <h5 id="java">Java ´úÂë</h5>
+                <h5 id="java">Java ä»£ç </h5>
                 <div class="col s12">
                     <div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="javaGameProfile">Java ÓÎÏ·ÅäÖÃ</label>
+                                <label for="javaGameProfile">Java æ¸¸æˆé…ç½®</label>
                                 <textarea style="min-height: 150px;max-width:100%;" id="javaGameProfile" class="materialize-textarea" readonly>// Skin #{{skin.id}} generated on {{(skin.timestamp*1000 | date : "medium")}} via MineSkin.jeansou.com
 GameProfile skin{{skin.id}} = new GameProfile(UUID.fromString("{{skin.data.uuid}}"), "skin{{skin.id}}");
 skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin.data.texture.value}}", "{{skin.data.texture.signature}}"));
@@ -166,14 +170,14 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
             </div>
 
             <div class="row card-panel">
-                <h5 id="citizens">Citizens Æ¤·ôÖ¸Áî</h5>
+                <h5 id="citizens">Citizens çš®è‚¤æŒ‡ä»¤</h5>
                 <div class="col s12">
                     <div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="citizensCommand">Citizens /npc skin Ö¸Áî</label>
+                                <label for="citizensCommand">Citizens /npc skin æŒ‡ä»¤</label>
                                 <textarea style="min-height: 150px;max-width:100%;" id="citizensCommand" class="materialize-textarea" readonly>/npc skin -t {{ skin.data.uuid }} {{ skin.data.texture.value }} {{ skin.data.texture.signature }}</textarea>
-                                <button class="btn tooltipped" data-clipboard-target="#citizensCommand"><i class="fa fa-clipboard" aria-hidden="true"></i> ¸´ÖÆ</button>
+                                <button class="btn tooltipped" data-clipboard-target="#citizensCommand"><i class="fa fa-clipboard" aria-hidden="true"></i> å¤åˆ¶</button>
                             </div>
                         </div>
                     </div>
@@ -184,11 +188,11 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
 
             <div class="row">
                 <div class="pull-left">
-                    {{skin.views}} ´Î²é¿´
+                    {{skin.views}} æ¬¡æŸ¥çœ‹
                 </div>
                 <div class="pull-right">
                     <div ng-show="skin.accountId > 0 && skin.timestamp > 0" class="text-muted">
-                        Éú³ÉÓÚ {{(skin.timestamp*1000 | date : "medium")}} by ÕË»§ #{{skin.accountId}} {{ (skin.timestamp>1504564600?"in "+(skin.duration/1000.0)+"s":"") }}
+                        ç”Ÿæˆäº {{(skin.timestamp*1000 | date : "medium")}} by è´¦æˆ· #{{skin.accountId}} {{ (skin.timestamp>1504564600?"in "+(skin.duration/1000.0)+"s":"") }}
                     </div>
                 </div>
             </div>
