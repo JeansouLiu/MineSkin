@@ -87,7 +87,7 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             },
             data: {
                 meta: {
-                    title: "MineSkin - ×Ô¶¨ÒåÆ¤·ôÉú³ÉÆ÷",
+                    title: "MineSkin - è‡ªå®šä¹‰çš®è‚¤ç”Ÿæˆå™¨",
                     titleSuffix: "",
                     image: "favicon.png"
                 }
@@ -129,7 +129,7 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             }],
             data: {
                 meta: {
-                    title: "Í³¼ÆÊı¾İ",
+                    title: "ç»Ÿè®¡æ•°æ®",
                     image: "favicon.png"
                 }
             }
@@ -148,7 +148,7 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             },
             data: {
                 meta: {
-                    title: "¿â",
+                    title: "åº“",
                     image: "favicon.png"
                 }
             }
@@ -195,7 +195,7 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
             },
             data: {
                 meta: {
-                    title: "ÕË»§",
+                    title: "è´¦æˆ·",
                     image: "favicon.png"
                 }
             }
@@ -207,7 +207,7 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
 
     ngMetaProvider.useTitleSuffix(true);
     ngMetaProvider.setDefaultTitleSuffix(" | MineSkin");
-    ngMetaProvider.setDefaultTitle("MineSkin - ×Ô¶¨ÒåÆ¤·ôÉú³ÉÆ÷");
+    ngMetaProvider.setDefaultTitle("MineSkin - è‡ªå®šä¹‰çš®è‚¤ç”Ÿæˆå™¨");
     ngMetaProvider.setDefaultTag("image", "favicon.png");
 
 });
@@ -255,7 +255,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
 
         if ($scope.skinUrl) {
             $scope.generating = true;
-            var genAlert = $scope.addAlert("´Ó URL ´´½¨Æ¤·ôÖĞ...", "info", 15000);
+            var genAlert = $scope.addAlert("ä» URL åˆ›å»ºçš®è‚¤ä¸­...", "info", 15000);
             setTimeout(function () {
                 $http({
                     url: apiBaseUrl + "/generate/url?url=" + $scope.skinUrl + "&name=" + $scope.skinName + "&model=" + $scope.skinModel + "&visibility=" + ($scope.privateUpload ? 1 : 0),
@@ -274,7 +274,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
             }, 500);
         } else if ($scope.skinUpload) {
             $scope.generating = true;
-            var genAlert = $scope.addAlert("ÉÏ´«Æ¤·ôÖĞ...", "info", 15000);
+            var genAlert = $scope.addAlert("ä¸Šä¼ çš®è‚¤ä¸­...", "info", 15000);
             setTimeout(function () {
                 Upload.upload({
                     url: apiBaseUrl + "/generate/upload?name=" + $scope.skinName + "&model=" + $scope.skinModel + "&visibility=" + ($scope.privateUpload ? 1 : 0),
@@ -297,7 +297,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
             var skinUuid;
 
             function generateUser(uuid) {
-                var genAlert = $scope.addAlert("¼ÓÔØÆ¤·ôÊı¾İÖĞ...", "info", 15000);
+                var genAlert = $scope.addAlert("åŠ è½½çš®è‚¤æ•°æ®ä¸­...", "info", 15000);
                 setTimeout(function () {
                     $http({
                         url: apiBaseUrl + "/generate/user/" + uuid + "?name=" + $scope.skinName + "&model=" + $scope.skinModel + "&visibility=" + ($scope.privateUpload ? 1 : 0),
@@ -322,16 +322,16 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
                     generateUser(skinUuid);
                 }
             } else {
-                var validateAlert = $scope.addAlert("ÑéÖ¤ÓÃ»§ÃûÖĞ...", "info", 10000);
+                var validateAlert = $scope.addAlert("éªŒè¯ç”¨æˆ·åä¸­...", "info", 10000);
                 $.ajax({
                     url: apiBaseUrl + "/validate/user/" + $scope.skinUser,
                     success: function (data) {
                         if (data.valid) {
-                            $scope.addAlert("ÓÃ»§ÃûÓĞĞ§", "success", 1000);
+                            $scope.addAlert("ç”¨æˆ·åæœ‰æ•ˆ", "success", 1000);
                             skinUuid = data.uuid;
                             generateUser(skinUuid);
                         } else {
-                            $scope.addAlert("ÓÃ»§ÃûÎŞĞ§", "danger", 10000);
+                            $scope.addAlert("ç”¨æˆ·åæ— æ•ˆ", "danger", 10000);
                         }
                         validateAlert.close();
                     }
@@ -342,7 +342,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
     $scope.generateSuccess = function (data, genAlert) {
         $scope.generating = false;
         $scope.generateAttempt = 0;
-        var successAlert = $scope.addAlert("Æ¤·ô´´½¨³É¹¦!", "success", 10000);
+        var successAlert = $scope.addAlert("çš®è‚¤åˆ›å»ºæˆåŠŸ!", "success", 10000);
         if (genAlert) {
             genAlert.close();
         }
@@ -366,7 +366,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
     $scope.generateError = function (message, genAlert) {
         // $scope.generating = false;
         $scope.generateAttempt++;
-        $scope.addAlert("´´½¨Æ¤·ôÊ§°Ü: " + message, "danger", 2000);
+        $scope.addAlert("åˆ›å»ºçš®è‚¤å¤±è´¥: " + message, "danger", 2000);
         if (genAlert) {
             genAlert.close();
         }
@@ -376,7 +376,7 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
             return;
         }
         $timeout(function () {
-            Materialize.toast("µÈ´ı 5 ÃëºóÖØÊÔ...", 5000);
+            Materialize.toast("ç­‰å¾… 5 ç§’åé‡è¯•...", 5000);
             $timeout(function () {
                 $scope.generate();
             }, 7000 + ($scope.generatorDelay * 1000));
@@ -575,6 +575,8 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
     $scope.checkAcceptSkins = false;
     $scope.checkAcceptPassword = false;
 
+    $scope.accountStats = {};
+    
     $scope.doLogin = function () {
         if (!$scope.username || !$scope.password) return;
 
@@ -587,7 +589,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             }
         }).then(function (response) {
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             if (response.data.success) {
@@ -597,7 +599,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     }
@@ -614,7 +616,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             }
         }).then(function (response) {
             if (response.data.error || !response.data.success) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             if (response.data.success) {
@@ -626,7 +628,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     };
@@ -643,14 +645,14 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             method: "GET",
         }).then(function (response) {
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             $scope.user = response.data;
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     }
@@ -661,7 +663,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             method: "GET"
         }).then(function (response) {
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             $scope.userProfile = response.data;
@@ -671,7 +673,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     }
@@ -682,7 +684,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             method: "GET"
         }).then(function (response) {
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             $scope.accountExists = response.data.exists;
@@ -691,17 +693,19 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
 
             if (response.data.exists) {
                 $scope.getAccount();
+                
+                $scope.getAccountStats();
             }
             if (response.data.passwordUpdated) {
-                Materialize.toast("ÕË»§ÃÜÂëÒÑ¸üĞÂ");
+                Materialize.toast("è´¦æˆ·å¯†ç å·²æ›´æ–°");
             }
             if (response.data.securityUpdated) {
-                Materialize.toast("°²È«ÌáÎÊÒÑ¸üĞÂ");
+                Materialize.toast("å®‰å…¨æé—®å·²æ›´æ–°");
             }
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     };
@@ -712,14 +716,14 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             method: "GET"
         }).then(function (response) {
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             $scope.myAccount = response.data;
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     };
@@ -742,7 +746,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             }
         }).then(function (response) {
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             if (response.data.success) {
@@ -751,7 +755,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     }
@@ -779,7 +783,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             }
         }).then(function (response) {
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 return;
             }
             if (response.data.success) {
@@ -788,13 +792,33 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
         }, function (response) {
             console.log(response);
             if (response.data.error) {
-                Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
+            }
+        });
+    };
+    
+    $scope.getAccountStats = function(){
+        $http({
+            url: apiBaseUrl + "/accountManager/accountStats?token="+$scope.token+"&username"+$scope.username+"&uuid="+$scope.uuid,
+            method: "GET"
+        }).then(function (response) {
+            if (response.data.error) {
+                Materialize.toast("Error: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                return;
+            }
+            if (response.data.success) {
+                $scope.accountStats = response.data;
+            }
+        }, function (response) {
+            console.log(response);
+            if (response.data.error) {
+                Materialize.toast("Error: " + (response.data.errorMessage || response.data.msg || response.data.error));
             }
         });
     }
 
     $scope.deleteAccount = function () {
-        if (confirm("ÄãÈ·¶¨É¾³ı´ËÕÊ»§?")) {
+        if (confirm("ä½ ç¡®å®šåˆ é™¤æ­¤å¸æˆ·?")) {
             $http({
                 url: apiBaseUrl + "/accountManager/deleteAccount",
                 method: "POST",
@@ -805,11 +829,11 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
                 }
             }).then(function (response) {
                 if (response.data.error) {
-                    Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                    Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                     return;
                 }
                 if (response.data.success) {
-                    Materialize.toast("ÕË»§ÒÑÉ¾³ı.", 900);
+                    Materialize.toast("è´¦æˆ·å·²åˆ é™¤.", 900);
                     setTimeout(function () {
                         location.reload();
                     }, 1000);
@@ -817,7 +841,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             }, function (response) {
                 console.log(response);
                 if (response.data.error) {
-                    Materialize.toast("´íÎó: " + (response.data.errorMessage || response.data.msg || response.data.error));
+                    Materialize.toast("é”™è¯¯: " + (response.data.errorMessage || response.data.msg || response.data.error));
                 }
             });
         }
@@ -860,7 +884,7 @@ mineskinApp.controller("skinController", ["$scope", "$timeout", "$http", "$state
 
     /* +Head */
     $scope.head = {
-        pageTitle: "MineSkin - ×Ô¶¨ÒåÆ¤·ôÉú³ÉÆ÷",
+        pageTitle: "MineSkin - è‡ªå®šä¹‰çš®è‚¤ç”Ÿæˆå™¨",
         pageIcon: "favicon.png",
         pageDescription: "MineSkin.org allows you to generate skin texture data for Minecraft which is signed by Mojang."
     };
