@@ -7,10 +7,10 @@
     <br/>
     <div class="center col s6 offset-s3">
         <div class="row">
-            <h1>MineSkin ÕË»§¹ÜÀí</h1>
+            <h1>MineSkin è´¦æˆ·ç®¡ç†</h1>
             <p>
-                ÔÚÕâÀï, Äã¿ÉÒÔÌí¼ÓÄã×Ô¼ºµÄ Minecraft ÕË»§À´¼ÓËÙÆ¤·ôÊı¾İµÄÉú³É.<br/>
-                ÄãÒ²¿ÉÒÔ¹ÜÀíÄãÒÑ¾­×¢²áµÄÕË»§.<br/>
+                åœ¨è¿™é‡Œ, ä½ å¯ä»¥æ·»åŠ ä½ è‡ªå·±çš„ Minecraft è´¦æˆ·æ¥åŠ é€Ÿçš®è‚¤æ•°æ®çš„ç”Ÿæˆ.<br/>
+                ä½ ä¹Ÿå¯ä»¥ç®¡ç†ä½ å·²ç»æ³¨å†Œçš„è´¦æˆ·.<br/>
             </p>
         </div>
         <br/>
@@ -18,14 +18,14 @@
 
         <div class="row">
             <div ng-show="!loggedIn">
-                <h4>ÇëµÇÂ¼ÄãµÄ Minecraft ÕËºÅ</h4>
+                <h4>è¯·ç™»å½•ä½ çš„ Minecraft è´¦å·</h4>
                 <span>(This is just to check your account information and will not be stored until you decide to actually add your account.)</span>
                 <br/>
 
                 <br/>
                 <div>
                     <input type="checkbox" ng-model="checkUnderstoodLogin" id="checkUnderstoodLogin"/>
-                    <label for="checkUnderstoodLogin" class="obviousLabel">ÎÒÃ÷°×ÎÒ <b>²»±Ø</b> µÇÂ¼</label>
+                    <label for="checkUnderstoodLogin" class="obviousLabel">æˆ‘æ˜ç™½æˆ‘ <b>ä¸å¿…</b> ç™»å½•</label>
                 </div>
                 <br/>
 
@@ -33,60 +33,60 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="username" type="email" class="validate" ng-disabled="!checkUnderstoodLogin" ng-model="username" required>
-                            <label for="username">ÓÃ»§Ãû (E-Mail)</label>
+                            <label for="username">ç”¨æˆ·å (E-Mail)</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="password" type="password" class="validate" ng-disabled="!checkUnderstoodLogin" ng-model="password" required>
-                            <label for="password">ÃÜÂë</label>
+                            <label for="password">å¯†ç </label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit" ng-disabled="!checkUnderstoodLogin">µÇÂ¼</button>
+                        <button class="btn waves-effect waves-light" type="submit" ng-disabled="!checkUnderstoodLogin">ç™»å½•</button>
                     </div>
                 </form>
             </div>
             <div ng-show="loggedIn">
-                <h2>ÒÑµÇÂ¼!</h2>
+                <h2>å·²ç™»å½•!</h2>
                 <hr/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div ng-show="!challengesSolved" ng-hide="!loggedIn">
-                <h4>Çë»Ø´ğ°²È«ÌáÎÊ</h4>
+                <h4>è¯·å›ç­”å®‰å…¨æé—®</h4>
                 <h6>Make sure the answer to <b>every question is the same</b> (<a href="https://account.mojang.com/me/changeSecretQuestions" target="_blank">Click here to change them</a>)</h6>
                 <form ng-submit="solveChallenges()" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="securityAnswer" type="text" class="validate" ng-model="securityAnswer">
-                            <label for="securityAnswer">°²È«ÌáÎÊ</label>
+                            <label for="securityAnswer">å®‰å…¨æé—®</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <span>Èç¹ûÄãµÄÕË»§Ã»ÓĞÉèÖÃ°²È«ÌáÎÊ, Çë <a href="#" ng-click="skipChallenges()"><strong>Ìø¹ıÏÂÒ»²½</strong></a>.</span>
+                        <span>å¦‚æœä½ çš„è´¦æˆ·æ²¡æœ‰è®¾ç½®å®‰å…¨æé—®, è¯· <a href="#" ng-click="skipChallenges()"><strong>è·³è¿‡ä¸‹ä¸€æ­¥</strong></a>.</span>
                     </div>
 
                     <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit">Ìá½»</button>
+                        <button class="btn waves-effect waves-light" type="submit">æäº¤</button>
                     </div>
                 </form>
             </div>
             <div ng-show="challengesSolved">
-                <h2>ÑéÖ¤³É¹¦!</h2>
+                <h2>éªŒè¯æˆåŠŸ!</h2>
                 <hr/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div ng-hide="!challengesSolved || (user&&userProfile)">
-                <h4>¼ÓÔØÓÃ»§Êı¾İÖĞ...</h4>
+                <h4>åŠ è½½ç”¨æˆ·æ•°æ®ä¸­...</h4>
             </div>
             <div ng-show="user && userProfile && userProfile.uuid">
-                <h2>ÓÃ»§Êı¾İ¼ÓÔØ³É¹¦!</h2>
+                <h2>ç”¨æˆ·æ•°æ®åŠ è½½æˆåŠŸ!</h2>
                 <div>
                     <span><strong>Email: </strong> {{ user.username }}<br/></span>
                     <span><strong>UUID: </strong> {{ userProfile.uuid }}<br/></span>
@@ -113,11 +113,11 @@
                 <div>
                     <div>
                         <input type="checkbox" ng-model="checkReadTerms" id="checkReadTerms"/>
-                        <label for="checkReadTerms" class="obviousLabel">ÎÒÒÑÔÄ¶ÁÉÏÊöĞ­Òé</label>
+                        <label for="checkReadTerms" class="obviousLabel">æˆ‘å·²é˜…è¯»ä¸Šè¿°åè®®</label>
                     </div>
                     <div>
                         <input type="checkbox" ng-model="checkAcceptSkins" id="checkAcceptSkins"/>
-                        <label for="checkAcceptSkins" class="obviousLabel">ÎÒÃ÷°×ÎÒµÄÕË»§Æ¤·ô»áËæ»ú¸Ä±ä</label>
+                        <label for="checkAcceptSkins" class="obviousLabel">æˆ‘æ˜ç™½æˆ‘çš„è´¦æˆ·çš®è‚¤ä¼šéšæœºæ”¹å˜</label>
                     </div>
                     <div>
                         <input type="checkbox" ng-model="checkAcceptPassword" id="checkAcceptPassword"/>
@@ -127,32 +127,36 @@
                 <br/>
 
                 <div class="row">
-                    <button class="btn waves-effect waves-light" type="submit" ng-disabled="!checkReadTerms || !checkAcceptSkins || !checkAcceptPassword" ng-click="submitAccount()">Ìí¼ÓÕË»§!</button>
+                    <button class="btn waves-effect waves-light" type="submit" ng-disabled="!checkReadTerms || !checkAcceptSkins || !checkAcceptPassword" ng-click="submitAccount()">æ·»åŠ è´¦æˆ·!</button>
                 </div>
 
             </div>
             <div ng-show="accountAdded">
-                <h2>ÕË»§ÒÑÌí¼Ó!</h2>
+                <h2>è´¦æˆ·å·²æ·»åŠ !</h2>
                 <h4>Thank you very much for your contribution to the MineSkin project! <3</h4>
                 <br/>
-                <span><a href="#" onclick="location.reload()">Ë¢ĞÂÒ³Ãæ</a> ²¢µÇÂ¼ÒÔ¹ÜÀíÄãµÄ</span>
+                <span><a href="#" onclick="location.reload()">åˆ·æ–°é¡µé¢</a>å¹¶ç™»å½•ä»¥ç®¡ç†ä½ çš„è´¦æˆ·</span>
             </div>
         </div>
         <div class="row" ng-show="accountExists"><!-- Account management -->
-            <h4>¹ÜÀíÕË»§</h4>
+            <h4>ç®¡ç†è´¦æˆ·</h4>
             <div>
                 <br/>
                 <div class="row">
-                    <h6>ÕË»§×´Ì¬</h6>
+                    <h6>è´¦æˆ·çŠ¶æ€</h6>
                     <div class="row">
                         <span><strong>Enabled:</strong> {{ accountEnabled }}<br/></span>
                         <span><strong>Success Rate:</strong> {{ myAccount.successRate*100 }}%<br/></span>
                     </div>
+                    <div class="row" ng-if="accountStats && accountStats.generateCount">
+                        <span ng-if="accountStats.generateCount > 0">ä½ çš„è´¦æˆ·å·²ç”Ÿæˆ {{ accountStats.generateCount }} ä¸ªçš®è‚¤, è€¶ï¼</span>
+                        <span ng-if="accountStats.generateCount <= 0">ä½ çš„è´¦æˆ·è¿˜æ²¡æœ‰ç”Ÿæˆçš®è‚¤ :(</span>
+                    </div>
                     <div class="col s3 offset-s3">
-                        <button class="btn waves-effect waves-light green" ng-disabled="accountEnabled" ng-click="enableAccount()">ÆôÓÃÕË»§</button>
+                        <button class="btn waves-effect waves-light green" ng-disabled="accountEnabled" ng-click="enableAccount()">å¯ç”¨è´¦æˆ·</button>
                     </div>
                     <div class="col s3">
-                        <button class="btn waves-effect waves-light orange" ng-disabled="!accountEnabled" ng-click="disableAccount()">½ûÓÃÕË»§</button>
+                        <button class="btn waves-effect waves-light orange" ng-disabled="!accountEnabled" ng-click="disableAccount()">ç¦ç”¨è´¦æˆ·</button>
                     </div>
                 </div>
                 <br>
@@ -165,8 +169,8 @@
                 <br/>
                 <div class="row">
                     <div class="row">
-                        <button class="btn waves-effect waves-light red" ng-disabled="accountEnabled" ng-click="deleteAccount()">É¾³ıÕË»§</button>
-                        <br/><span ng-show="accountEnabled" style="color:red">ÇëÏÈ½ûÓÃÕË»§</span>
+                        <button class="btn waves-effect waves-light red" ng-disabled="accountEnabled" ng-click="deleteAccount()">åˆ é™¤è´¦æˆ·</button>
+                        <br/><span ng-show="accountEnabled" style="color:red">è¯·å…ˆç¦ç”¨è´¦æˆ·</span>
                     </div>
                 </div>
             </div>
