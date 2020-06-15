@@ -598,6 +598,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
     $scope.loggedIn = false;
     $scope.needToSolveChallenges = true;
     $scope.challengesSolved = false;
+    $scope.skipSecurityChallenges = false;
     $scope.accountExists = false;
     $scope.accountEnabled = false;
     $scope.accountAdded = false;
@@ -703,6 +704,7 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
     };
     $scope.skipChallenges = function () {
         $scope.challengesSolved = true;
+        $scope.skipSecurityChallenges = true;
 
         $scope.getUser();
         $scope.getUserProfile();
@@ -803,13 +805,14 @@ mineskinApp.controller("accountController", ["$scope", "$http", "$cookies", "$ti
             username: $scope.username,
             password: $scope.password,
             uuid: $scope.uuid,
+            skipSecurityChallenges: $scope.skipSecurityChallenges,
             checks: {
                 readTerms: $scope.checkReadTerms,
                 acceptSkins: $scope.checkAcceptSkins,
                 acceptPassword: $scope.checkAcceptPassword
             }
         };
-        if ($scope.securityAnswers) {
+        if ($scope.securityAnswers && $scope.securityAnswers.length > 0) {
             d.securityAnswers = $scope.securityAnswers;
         }
         $http({
