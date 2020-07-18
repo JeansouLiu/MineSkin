@@ -140,14 +140,19 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <div ng-show="giveCommandVersion == '1_12'">
-                                    <label for="giveCommandOld">头颅 /give 指令</label>
+                                    <label for="giveCommand1_12">头颅 /give 指令</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommandOld" class="materialize-textarea" readonly>/give @p minecraft:skull 1 3 {SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{{ skin.name || '#' + skin.id}}",Lore:["Skin #{{skin.id}}","generated on {{(skin.timestamp*1000 | date : "medium")}}","via MineSkin.jeansou.com"]}}</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandOld"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_12"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                                 <div ng-show="giveCommandVersion == '1_13'">
-                                    <label for="giveCommandNew">玩家头 /give 指令</label>
-                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommandNew" class="materialize-textarea" readonly>/give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"生成于 {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"通过 MineSkin.jeansou.com\"}"]}}</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommandNew"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                    <label for="giveCommand1_13">玩家头 /give Command</label>
+                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_13" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"generated on {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"via MineSkin.org\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_13"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                </div>
+                                <div ng-show="giveCommandVersion == '1_16'">
+                                    <label for="giveCommand1_16">玩家头 /give Command</label>
+                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_16" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuidAsArray}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"generated on {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"via MineSkin.org\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_16"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                             </div>
                         </div>
