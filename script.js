@@ -552,6 +552,8 @@ mineskinApp.controller("viewController", ["$scope", "$http", "$cookies", "$timeo
 
     console.log($stateParams);
 
+    materializeBaseInit();
+
     $scope.giveCommandVersion = "1_13";
     $scope.skin = undefined;
     $scope.skinRotation = 35;
@@ -570,13 +572,14 @@ mineskinApp.controller("viewController", ["$scope", "$http", "$cookies", "$timeo
     }).then(function (response) {
         $scope.skin = response.data;
 
+        // 1.16 UUID 格式支持
         $scope.skin.data.uuidAsArray = formatInt32UUID(getInt32ForUUID($scope.skin.data.uuid));
 
         ngMeta.setTitle($scope.skin.name || "#" + $scope.skin.id);
         ngMeta.setTag("image", $sce.trustAsResourceUrl(apiBaseUrl + "/render/" + $scope.skin.id + "/head"));
 
         $timeout(function () {
-            Materialize.updateTextFields();
+            materializeBaseInit();
             $("#giveCommand").trigger("autoresize");
             $("#javaGameProfile").trigger("autoresize");
         }, 100);
@@ -1023,18 +1026,22 @@ mineskinApp.controller("skinController", ["$scope", "$timeout", "$http", "$state
     $scope.materializeInit = function (tab) {
         console.log("MATERIALIZE INIT")
         $timeout(function () {
-            $('select').material_select();
-            // https://stackoverflow.com/a/56725559/6257838
-            document.querySelectorAll('.select-wrapper').forEach(t => t.addEventListener('click', e=>e.stopPropagation()))
-            $('.tooltipped').tooltip();
             $('ul.tabs').tabs();
 //                        $('ul.tabs').tabs("select_tab",tab);
             // 'select_tab' doesn't work, because ui-sref replaces the href attribute
             $("#" + tab + "-trigger").trigger("click");
-            Materialize.updateTextFields();
+            materializeBaseInit();
         }, 100);
     };
 }]);
+
+function materializeBaseInit() {
+    $('select').material_select();
+    // https://stackoverflow.com/a/56725559/6257838
+    document.querySelectorAll('.select-wrapper').forEach(t => t.addEventListener('click', e=>e.stopPropagation()))
+    $('.tooltipped').tooltip();
+    Materialize.updateTextFields();
+}
 
 //// https://github.com/MineSkin/mineskin.org/issues/13 by @SpraxDev
 const uuidView = new DataView(new ArrayBuffer(16));
