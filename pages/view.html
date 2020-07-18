@@ -146,7 +146,7 @@
                                 </div>
                                 <div ng-show="giveCommandVersion == '1_13'">
                                     <label for="giveCommandNew">玩家头 /give 指令</label>
-                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommandNew" class="materialize-textarea" readonly>minecraft:give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"generated on {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"via MineSkin.jeansou.com\"}"]}}</textarea>
+                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommandNew" class="materialize-textarea" readonly>/give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"生成于 {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"通过 MineSkin.jeansou.com\"}"]}}</textarea>
                                     <button class="btn tooltipped" data-clipboard-target="#giveCommandNew"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                             </div>
