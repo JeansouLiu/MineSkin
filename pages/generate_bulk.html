@@ -1,0 +1,152 @@
+<div class="container">
+    <h2>批量生成</h2>
+    <div class="card-panel z-depth-2">
+        <div class="row">
+            <div>
+                使用此页面一次性生成多个皮肤数据!<br/>
+                生成皮肤数据时 <strong>请不要关闭浏览器</strong>!<br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12">
+                <h3>皮肤 & 选项</h3>
+                <div class="col s12" id="uploadForm">
+                    <div ng-repeat="skin in skins track by $index">
+                        <br/>
+                        <div class="row">
+                            <div class="col s12">
+                                <h4>#{{ $index+1 }} <small><a ng-disabled="generating" href="#" ng-click="removeSkinInput($index)">X</a></small></h4>
+                                <div class="row">
+                                    <i ng-hide="skin.info">已生成皮肤的数据将会显示在这里</i>
+                                    <div ng-show="skin.info">
+                                        <div ng-show="skin.info.data">
+                                            <a href="https://mineskin.jeansou.com/{{ skin.info.data.id }}" target="_blank">https://mineskin.jeansou.com/{{ skin.info.data.id }}</a><br/>
+                                            <br/>
+                                            <div class="input-field col s12">
+                                                <input readonly type="text" id="skinValue" ng-model="skin.info.data.data.texture.value">
+                                                <label for="skinValue">皮肤数据值</label>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input readonly type="text" id="skinSignature" ng-model="skin.info.data.data.texture.signature">
+                                                <label for="skinSignature">皮肤签名信息</label>
+                                            </div>
+                                        </div>
+                                        <div ng-show="skin.info.error">
+                                            生成失败!<br/>
+                                            <pre>{{ skin.info.error }}</pre>
+                                        </div>
+                                        <div ng-show="!skin.info.data && !skin.info.error">
+                                            生成中...
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="row">
+                                            <div ng-show="!skin.url && !skin.user" class="input-field file-field col s12">
+                                                <div ngf-drop ng-model="skin.upload" class="drop-box">
+                                                    <div ng-show="!skin.upload">
+                                                        <a ng-disabled="generating" type="file" ngf-select class="btn" id="skinUpload" name="file" ng-model="skin.upload" ngf-pattern="'image/png'" ngf-accept="'image/png'" ngf-max-size="16KB" ngf-dimensions="$width == 64 && ($height == 32 || $height == 64)" ngf-run-all-validations="true" ngf-model-options="{allowInvalid: true}"><i class="fa fa-file-image-o" aria-hidden="true"></i>&nbsp; 选择文件
+                                                        </a>
+                                                    </div>
+                                                    <div ng-show="skin.upload" style="padding-top: 4px;">
+                                                        <img src="" ngf-src="skin.upload" id="skinUploadTempImage" style="display:none;">
+                                                        <img src="" ngf-thumbnail="skin.upload" class="z-depth-1" style="height:128px;margin:2px;image-rendering: pixelated">
+                                                        <a ng-disabled="generating" class="btn" ng-click="skin.upload=null;">X</a>
+                                                    </div>
+                                                    <ul ng-show="uploadForm.file.$error">
+                                                        <li ng-show="uploadForm.file.$error.dimensions">图片尺寸为 {{ skin.upload.$ngfWidth }}x{{ skin.upload.$ngfHeight }}, 必须为 64x32 或 64x64</li>
+                                                        <li ng-show="uploadForm.file.$error.maxSize">图片大小为 {{ skin.upload.size / 1000 | number: 1 }} KB, 必须小于 16 KB</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div ng-show="!skin.upload && !skin.user" class="input-field col s12">
+                                                <input ng-disabled="generating" type="url" id="skinUrl" ng-model="skin.url" ng-required="!skin.upload && !skin.user">
+                                                <label for="skinUrl" class="required-label"><i class="fa fa-link" aria-hidden="true"></i>&nbsp; 图片链接</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div ng-show="!skin.url && !skin.upload" class="input-field col s12">
+                                                <input ng-disabled="generating" type="text" id="skinUser" ng-model="skin.user" ng-required="!skin.url && !skin.upload" ng-minlength="4" ng-maxlength="36" ng-change="skin.skinName = skin.user">
+                                                <label for="skinUser" class="required-label"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Minecraft 用户名</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="input-field col s12">
+                                            <input ng-disabled="generating" type="text" id="skinName" ng-model="skin.skinName">
+                                            <label for="skinName">皮肤名 (可选)</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <select ng-disabled="generating"  id="skinModel" ng-disabled="generating" ng-model="skin.skinModel" value="steve">
+                                                <option value="steve">经典 (Steve)</option>
+                                                <option value="slim">纤细 (Alex)</option>
+                                            </select>
+                                            <label>皮肤模型</label>
+                                        </div>
+                                        <div>
+                                            <div class="switch">
+                                                <label>
+                                                    公开
+                                                    <input ng-disabled="generating" type="checkbox" ng-model="skin.privateUpload">
+                                                    <span class="lever"></span>
+                                                    隐藏
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="divider"></div>
+                        <br/>
+                    </div>
+                    <br/>
+                    <a class="btn" ng-click="addSkinInput()">+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-init="refreshTimeout()" class="card-panel z-depth-2">
+        <h3>生成</h3>
+        <div class="row">
+            <div class="col s12">
+                <div class="center-align">
+                    <button class="btn" ng-disabled="generating || generatorTimeout > 0 || (skins.length < 1)" ng-click="startGenerate()">开始生成!</button>
+                    <br/>
+                    <span class="help-block" ng-show="generatorTimeout > 0">请等待 {{generatorTimeout}} 秒...</span>
+                    <div class="progress" ng-show="generating">
+                        <div class="indeterminate" ng-class="{indeterminate: generateProgress === 0 || generateProgress >= 100, determinate: generateProgress > 0 && generateProgress < 100}" ng-style="{'width': generateProgress + '%'}"></div>
+                    </div>
+                    <div ng-show="generating">
+                        <br/>
+                        <span>生成中! 去喝一杯咖啡 {{ generateEstimateMinutes }} 分钟后再来吧! ☕</span><br/>
+                        <br/>
+                        <span>总计: {{ skins.length }}</span><br/>
+                        <span>成功: {{ successCount }}</span><br/>
+                        <span>失败: {{ errorCount }}</span><br/>
+                    </div>
+                    <div ng-show="finished">
+                        <br/>
+                        <span>生成完成! 详细信息见上方!</span>
+                    </div>
+                </div>
+
+
+                <div class="pull-right">
+                    <strong class="pull-right">分享</strong>
+                    <br/>
+                    <link rel="me" href="https://twitter.com/MineSkinOrg">
+                    <a href="https://twitter.com/share" data-show-count="false" twitter></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
