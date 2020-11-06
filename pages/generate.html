@@ -1,19 +1,15 @@
 <div class="container">
     <h2>生成新皮肤</h2>
-
     <div class="card-panel z-depth-2">
         <div class="row">
             <div class="col s12 m9">
                 <h3>选择皮肤</h3>
-
                 <form class="col s12" name="uploadForm">
                     <div class="row">
                         <div ng-show="!skinUrl && !skinUser" class="input-field file-field col s12">
                             <div ngf-drop ng-model="skinUpload" class="drop-box">
                                 <div ng-show="!skinUpload">
-                                    <a type="file" ngf-select class="btn" id="skinUpload" name="file" ng-model="skinUpload" ngf-pattern="'image/png'" ngf-accept="'image/png'" ngf-max-size="16KB" ngf-dimensions="$width == 64 && ($height == 32 || $height == 64)" ngf-run-all-validations="true" ngf-model-options="{allowInvalid: true}"><i class="fa fa-file-image-o" aria-hidden="true"></i>&nbsp; 选择
-                                        文件
-                                    </a>
+                                    <a type="file" ngf-select class="btn" id="skinUpload" name="file" ng-model="skinUpload" ngf-pattern="'image/png'" ngf-accept="'image/png'" ngf-max-size="16KB" ngf-dimensions="$width == 64 && ($height == 32 || $height == 64)" ngf-run-all-validations="true" ngf-model-options="{allowInvalid: true}"><i class="fa fa-file-image-o" aria-hidden="true"></i>&nbsp; 选择文件</a>
                                 </div>
                                 <div ng-show="skinUpload" style="padding-top: 4px;">
                                     <img src="" ngf-src="skinUpload" id="skinUploadTempImage" style="display:none;">
@@ -21,8 +17,8 @@
                                     <a class="btn" ng-click="skinUpload=null;">X</a>
                                 </div>
                                 <ul ng-show="uploadForm.file.$invalid">
-                                    <li ng-show="uploadForm.file.$error.dimensions">你上传的图片的尺寸: {{ skinUpload.$ngfWidth }}x{{ skinUpload.$ngfHeight }}, 需要尺寸: 64x32 or 64x64</li>
-                                    <li ng-show="uploadForm.file.$error.maxSize">图片大小: {{ skinUpload.size / 1000 | number: 1 }} KB, 最多 16 KB</li>
+                                    <li ng-show="uploadForm.file.$error.dimensions">皮肤图片尺寸: {{ skinUpload.$ngfWidth }}x{{ skinUpload.$ngfHeight }}, 只支持 64x32 或 64x64</li>
+                                    <li ng-show="uploadForm.file.$error.maxSize">图片大小: {{ skinUpload.size / 1000 | number: 1 }} KB, 不可超过 16 KB</li>
                                 </ul>
                             </div>
                         </div>
@@ -30,7 +26,7 @@
                     <div class="row">
                         <div ng-show="!skinUpload && !skinUser" class="input-field col s12">
                             <input type="url" id="skinUrl" ng-model="skinUrl" ng-required="!skinUpload && !skinUser">
-                            <label for="skinUrl" class="required-label"><i class="fa fa-link" aria-hidden="true"></i>&nbsp; 图片网址</label>
+                            <label for="skinUrl" class="required-label"><i class="fa fa-link" aria-hidden="true"></i>&nbsp; 图片链接</label>
                         </div>
                     </div>
                     <div class="row">
@@ -54,19 +50,6 @@
                                 $("#skinRender").attr("src", "https://minerender.org/embed/skin/?skin.name=" + user + "&autoResize=true&shadow=true&camera.position=-15,35,20&controls.pan=false&utm_source=mineskin&utm_medium=website&utm_campaign=skin_gen_name");
                             }
                         });
-//                        $("#skinUploadTempImage").on("load", function () {
-//                            var upload = $("#skinUploadTempImage").attr("src");
-//                            if (upload) {
-//                                $.ajax({
-//                                    url: upload
-//                                }).done(function (response) {
-//                                    console.log(response)
-//                                    var base64 = "data:image/png;base64," + btoa(encodeURIComponent(response));
-//                                    console.log(base64)
-//                                    $("#skinRender").attr("src", "https://skinrender.ga/embed/?skin.data=" + base64 + "&autoResize=true&shadow=true&camera.position=-15,35,20&controls.pan=false");
-//                                })
-//                            }
-//                        })
                         $("#skinRender").on("load", function () {
                             $("#skinRender").show();
                         })
@@ -78,13 +61,8 @@
             </div>
         </div>
     </div>
-
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <div google-ad="7160666614"></div>
-    
     <div ng-init="refreshTimeout()" class="card-panel z-depth-2">
         <h3>选项</h3>
-
         <div class="row">
             <form class="col s12">
                 <div class="input-field col s12">
@@ -93,10 +71,10 @@
                 </div>
                 <div class="input-field col s12">
                     <select id="skinModel" ng-model="skinModel" value="steve">
-                        <option value="steve">Classic (Steve)</option>
-                        <option value="slim">Slim (Alex)</option>
+                        <option value="steve">经典 (Steve)</option>
+                        <option value="slim">纤细 (Alex)</option>
                     </select>
-                    <label>Skin Model</label>
+                    <label>皮肤模型</label>
                 </div>
                 <div>
                     <div class="switch">
@@ -104,7 +82,7 @@
                             公开
                             <input type="checkbox" ng-model="privateUpload">
                             <span class="lever"></span>
-                            私密
+                            隐藏
                         </label>
                     </div>
                 </div>
@@ -113,25 +91,22 @@
         <div class="row">
             <div class="col s12">
                 <div class="center-align">
-                    <button class="btn" ng-disabled="generating || generatorTimeout > 0 || (!skinUrl && (!skinUpload || uploadForm.file.$invalid) && !skinUser)" ng-click="generate()">生成!</button>
+                    <button class="btn" ng-disabled="generating || generatorTimeout > 0 || (!skinUrl && (!skinUpload || uploadForm.file.$invalid) && !skinUser)" ng-click="generate()">开始生成!</button>
                     <br/>
                     <span class="help-block" ng-show="generatorTimeout > 0">请等待 {{generatorTimeout}} 秒...</span>
                     <div class="progress" ng-show="generating">
                         <div class="indeterminate" ng-class="{indeterminate: generateProgress === 0 || generateProgress >= 100, determinate: generateProgress > 0 && generateProgress < 100}" ng-style="{'width': generateProgress + '%'}"></div>
                     </div>
                 </div>
-
-
                 <div class="pull-right">
                     <strong class="pull-right">分享</strong>
                     <br/>
                     <link rel="me" href="https://twitter.com/MineSkinOrg">
-                    <a href="https://twitter.com/share" data-show-count="false" twitter></a>
+                    <a href="https://twitter.com/share" data-show-count="true" twitter></a>
                 </div>
             </div>
         </div>
     </div>
-
     <br/>
     <br/>
     <div class="card-panel z-depth-2" ng-init="refreshStats()">
