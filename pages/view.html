@@ -176,7 +176,7 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
                 </div>
                 <div class="pull-right">
                     <div ng-show="skin.accountId > 0 && skin.timestamp > 0" class="text-muted">
-                        生成于 {{(skin.timestamp*1000 | date : "medium")}} by 账户 #{{skin.accountId}} {{ (skin.timestamp>1504564600?"耗时 "+(skin.duration/1000.0)+"s":"") }}
+                        生成于 {{(skin.timestamp*1000 | date : "medium")}} by 账户 #{{skin.accountId}} {{ (skin.timestamp>1504564600?"耗时 "+(skin.duration/1000.0)+" 秒":"") }}
                     </div>
                 </div>
             </div>
