@@ -3,81 +3,47 @@
     <head>
         <title ng-bind="ngMeta.title">MineSkin</title>
         <link id="favicon" rel="icon" href="img/mineskin-x256.png"/>
-
         <!-- SEO -->
         <meta name="keywords" content="皮肤,生成器,我的世界,mineskin,skin,skull,generator,custom,head,skin,minecraft,player,playerhead,skulls,customskull,spigot,bukkit,generator,api,customblocks">
-        <meta name="description" content="MineSkin 是一个 Mojang 皮肤数据生成器.">
-        <!--<update-meta name="description" content="{{head.pageDescription}}"></update-meta>-->
+        <meta name="description" content="MineSkin 是一个 Minecraft 皮肤数据生成器.">
         <meta name="author" content="inventivetalent">
         <meta name="translator" content="Jeansou">
-
         <meta property="og:type" content="website">
         <meta property="og:title" content="{{ ngMeta['title'] || 'MineSkin' }}">
         <meta property="og:image" content="{{ ngMeta['image'] || 'img/mineskin-x256.png' }}">
-        <!--<update-meta property="og:image" content="{{head.pageIcon || 'https://mineskin.org/img/mineskin-x256.png'}}"></update-meta>-->
-        <meta property="og:description" content="MineSkin 是一个 Mojang 皮肤数据生成器.">
-        <!--<update-meta property="og:description" content="{{head.pageDescription}}"></update-meta>-->
-
+        <meta property="og:description" content="MineSkin 是一个 Minecraft 皮肤数据生成器.">
         <meta property="twitter:title" content="{{ ngMeta['title'] || 'MineSkin' }}">
         <meta property="twitter:image" content="{{ ngMeta['image'] || 'img/mineskin-x256.png' }}">
-        <!--<update-meta property="twitter:image" content="{{head.pageIcon || 'https://mineskin.org/img/mineskin-x256.png'}}"></update-meta>-->
-        <meta property="twitter:description" content="MineSkin 是一个 Mojang 皮肤数据生成器.">
-        <!--<update-meta property="twitter:description" content="{{head.pageDescription}}"></update-meta>-->
+        <meta property="twitter:description" content="MineSkin 是一个 Minecraft 皮肤数据生成器.">
         <meta property="twitter:site" content="@MineSkinOrg">
         <meta property="twitter:creator" content="@Inventivtalent">
         <meta property="twitter:card" content="summary">
-
         <meta name="flattr:id" content="okelw0">
-
         <!-- Style -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css" integrity="sha256-mkKV3FUh67dtli09bVbaYyM1526XgR92cz1uKarE1jo=" crossorigin="anonymous"/>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-        <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <meta name=viewport content="width=device-width, initial-scale=1">
-
         <meta name="fragment" content="!">
         <base href="/">
-
         <script type='application/ld+json'>
-{
-  "@context": "http://www.schema.org",
-  "@type": "WebSite",
-  "name": "MineSkin",
-  "url": "http://mineskin.jeansou.com"
-}
+            {
+              "@context": "http://www.schema.org",
+              "@type": "WebSite",
+              "name": "MineSkin",
+              "url": "https://mineskin.jeansou.com"
+            }
         </script>
-
         <script src="https://donorbox.org/install-popup-button.js" type="text/javascript" defer></script>
         <script> window.DonorBox = { widgetLinkClassName: 'custom-dbox-popup' } </script>
-
-        <!-- Hotjar Tracking Code for https://mineskin.org -->
-        <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:1028288,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
-
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: "ca-pub-2604356629473365",
-                enable_page_level_ads: true
-            });
-        </script>
     </head>
     <body ng-cloak>
         <header>
             <nav class="nav-extended indigo">
                 <div class="nav-wrapper row">
-                    <a href="http://mineskin.jeansou.com" class="brand-logo center">MineSkin</a>
+                    <a href="https://mineskin.jeansou.com" class="brand-logo center">MineSkin</a>
                     <ul class="right hide-on-med-and-down">
                         <li><a class="waves-effect waves-light btn blue" href="account">账户</a></li>
                     </ul>
@@ -104,8 +70,8 @@
                     <div class="col s12 m8">
                         <h5 class="white-text">简介</h5>
                         <p class="grey-text text-lighten-4">
-                            <strong>MineSkin.org</strong> allows you to generate <strong>skin texture data</strong> signed by Mojang.<br/>
-                            These can be used on ingame skull blocks or to change a player's skin using some packet magic :).<br/>
+                            <strong>MineSkin</strong> 用于生成 <strong>Minecraft 皮肤纹理数据</strong><br/>
+                            然后你就可以使用数据包来更换玩家的皮肤或获取玩家头颅 :).<br/>
                             <br/>
                             This website makes custom skins a lot more convenient and less time consuming, since it uses multiple accounts donated by multiple awesome people &lt;3. This way, you don't have to use your own account to generate textures.<br/>
                             <strong>This way you can get your custom textures within seconds, without going through the hassle of changing your own skin, etc.</strong><br/>
@@ -114,7 +80,7 @@
                         </p>
                         <div>
                             <a href="https://www.cloudflare.com/" target="_blank"><img src="img/cf-logo-v.svg" alt="Cloudflare Logo" style="width: 200px;"></a><br/>
-                            &nbsp;&nbsp;Protected by <a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a>
+                            &nbsp;&nbsp;由 <a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a> 提供加速服务
                         </div>
                     </div>
                     <div class="col s12 m2">
@@ -123,7 +89,7 @@
                             <li><a class="white-text" href="https://twitter.com/MineSkinOrg" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter</a></li>
                             <li><a class="white-text" href="https://yeleha.co/discord" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
                             <li><a class="white-text" href="https://github.com/MineSkin" target="_blank"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
-                            <li><a class="white-text" href="https://www.spigotmc.org/threads/164209" target="_blank">SpigotMC 页面</a></li>
+                            <li><a class="white-text" href="https://www.spigotmc.org/threads/164209" target="_blank">SpigotMC 帖子</a></li>
                             <br/>
                             <li><a class="white-text" href="account">账户管理</a></li>
                             <li><a class="white-text custom-dbox-popup" target="_blank" href="https://donorbox.org/mineskin">赞助原作者</a></li>
@@ -134,20 +100,19 @@
                         </ul>
                         <div>
                             <a href="https://www.patreon.com/bePatron?u=554075" data-patreon-widget-type="become-patron-button">赞助原作者!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
-                            <a href="https://www.patreon.com/bePatron?u=22183810" data-patreon-widget-type="become-patron-button">赞助 Jeansou!</a>
                         </div>
                     </div>
                     <div class="col s12 m2">
                         <h5 class="white-text">更多链接</h5>
                         <ul>
-                            <li><a class="white-text" href="https://github.com/MineSkin/api.mineskin.org/wiki/REST-API" target="_blank">RESTful API documentation</a></li>
-                            <li><a class="white-text" ui-sref="index.stats">Stats</a></li>
+                            <li><a class="white-text" href="https://github.com/MineSkin/api.mineskin.org/wiki/REST-API" target="_blank">RESTful API 文档</a></li>
+                            <li><a class="white-text" ui-sref="index.stats">统计数据</a></li>
                             <br/>
                             <li><a class="white-text" href="https://github.com/InventivetalentDev/MineskinClient" target="_blank">Java API Client</a></li>
                             <li><a class="white-text" href="https://forums.spongepowered.org/t/lib-mineskinsponge-create-skins-easily/16293" target="_blank">SpongePowered API Client</a></li>
                             <br/>
-                            <li><a class="white-text" href="https://r.spiget.org/25417" target="_blank">CustomSkins Plugin</a></li>
-                            <li><a class="white-text" href="https://r.spiget.org/6478" target="_blank">CustomBlocks Plugin</a></li>
+                            <li><a class="white-text" href="https://r.spiget.org/25417" target="_blank">CustomSkins 插件</a></li>
+                            <li><a class="white-text" href="https://r.spiget.org/6478" target="_blank">CustomBlocks 插件</a></li>
                         </ul>
                     </div>
                 </div>
@@ -157,54 +122,28 @@
                     由 <a class="cyan-text" href="https://inventivetalent.org" target="_blank">inventivetalent</a> 制作
                     由 <a class="cyan-text" href="https://blog.jeansou.com" target="_blank">Jeansou</a> 翻译
                     <span class="pull-right">
-                        本站不属于 Minecraft / Mojang AB.
+                        本站与 Minecraft / Mojang AB 没有任何从属关系.
                     </span>
                 </div>
             </div>
         </footer>
-
-
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js" integrity="sha256-jFCqhWdzGFjoG8/SAncY2afI/Xv1TPSWSZrb9dpXQbk=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.min.js" integrity="sha256-KYao/9ufihAPfOpLlVPFDjECsFXMQqBhlbLn3FBsgvw=" crossorigin="anonymous"></script>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.5/angular-sanitize.min.js" integrity="sha256-FPRibkFAa4FnfmKmMCV4sX162vfxgb3aOyN4kL+3bvA=" crossorigin="anonymous"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js" integrity="sha256-0YzDSJS0qH+wpvug+Im1cMB9CX919NMtHj0d2VVHPp4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-meta/1.0.0/ngMeta.min.js" integrity="sha256-ozIo0gq6Sx8v/G9Tuaw8a70PT5leMat+Z3JeWyxZxzA=" crossorigin="anonymous"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js" integrity="sha256-FMocp8pp1WruAK6GtjNDtuGAALCt/dCsVtw7oSjvPX0=" crossorigin="anonymous"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js" integrity="sha256-3mqgTUhHNgfXgjrzjPOaW03DdQ9hgW92BApzLREoRoA=" crossorigin="anonymous"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.1/angular-moment.min.js" integrity="sha256-BvdaZdPJc+x1dwsmn62ZkJ+4WepCjqP3xAFYrPP10F8=" crossorigin="anonymous"></script>
-
-        <!--<script src="https://cdn.rawgit.com/dwmkerr/angular-modal-service/126c6ecf/dst/angular-modal-service.min.js"></script>-->
-        <!-- Modified script which fixes issues with using the service in the onEnter function -->
         <script src="https://cdn.rawgit.com/pdgendt/c351649feb30860182c2/raw/2ca26cbdc7d5913e567b2a52087ee109b362cb8a/angular-modal-service.js"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js" integrity="sha256-TqtYHg6/i06jaAnqVU0twQV7dROa7Um8CpqElzK9024=" crossorigin="anonymous"></script>
-
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
-
-        <script src="https://platform.twitter.com/widgets.js"></script>
+        <script src="https://bu.link2.workers.dev/https/platform.twitter.com/widgets.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
-
         <script src="https://cdn.jsdelivr.net/npm/angular-update-meta@2.1.0/dist/update-meta.min.js"></script>
-
-        <script>
-            window.DOP_config = {
-                links: { // Replace with your links
-                    paypal: "https://paypal.me/inventivetalent",
-                    patreon: "https://patreon.com/jeansou"
-                },
-                enableAnalytics: true
-            }
-        </script>
         <script src="https://cdn.jsdelivr.net/gh/InventivetalentDev/DonationPopup@master/DonationPopup.min.js"></script>
-
         <script src="https://cdn.jsdelivr.net/gh/InventivetalentDev/AdBlockBanner@master/abb.min.js"></script>
-        
         <script src="script.js?reloady"></script>
     </body>
 </html>
