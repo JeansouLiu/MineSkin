@@ -3,12 +3,10 @@
         <style>
             .skin-image {
                 -webkit-filter: drop-shadow(8px 8px 6px rgba(0, 0, 0, 0.5));
-
                 min-width: 150px;
                 min-height: 150px;
             }
         </style>
-
         <div class="row card-panel" ng-show="!skin">
             <div class="col s12">
                 <div class="center">
@@ -28,7 +26,6 @@
                 </div>
             </div>
         </div>
-
         <div ng-show="skin">
             <h4>{{ skin.name || '#' + skin.id}}
                 <small class="text-muted">{{skin.private ? "(private)" : ""}}</small>
@@ -53,7 +50,7 @@
                     <script>
                         $(document).ready(function () {
                             $("#skinImage").on("load", function () {
-                                if (!/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {// disable for crawlers
+                                if (!/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
                                     $("#skinRender").attr("src", "https://minerender.org/embed/skin/?skin=https://api.mineskin.org/render/texture/" + $("#skinRenderId").text() + "&autoResize=true&shadow=true&camera.position=-15,35,20&controls.pan=false&utm_source=mineskin&utm_medium=website&utm_campaign=skin_preview");
                                     $("#skinRender").on("load", function () {
                                         $("#skinImageContainer").hide();
@@ -93,7 +90,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="textureUrl">纹理网址</label>
+                            <label for="textureUrl">纹理链接</label>
                             <input type="text" readonly id="textureUrl" ng-model="skin.data.texture.url">
                             <button class="btn tooltipped" data-clipboard-target="#textureUrl"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
@@ -101,30 +98,12 @@
                     <div class="row">
                         <div class="col s12">
                             <br>
-
                             <a href="https://my.minecraft.net/profile/skin/remote?url={{skin.data.texture.url}}" target="_blank">使用这个皮肤</a><br/>
                             <a href="{{skin.data.texture.url}}" target="_blank">下载此皮肤</a> (右键 &gt; 另存为)
                         </div>
                     </div>
                 </div>
             </div>
-
-            <br/>
-
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- mineskin view -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2604356629473365"
-                 data-ad-slot="9455657469"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-
-            <br/>
-
             <div class="row card-panel">
                 <h5 id="vanilla">原版 /give 指令</h5>
                 <div class="col s12">
@@ -141,17 +120,17 @@
                             <div class="input-field col s12">
                                 <div ng-show="giveCommandVersion == '1_12'">
                                     <label for="giveCommand1_12">头颅 /give 指令</label>
-                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommandOld" class="materialize-textarea" readonly>/give @p minecraft:skull 1 3 {SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{{ skin.name || '#' + skin.id}}",Lore:["Skin #{{skin.id}}","generated on {{(skin.timestamp*1000 | date : "medium")}}","via MineSkin.jeansou.com"]}}</textarea>
+                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommandOld" class="materialize-textarea" readonly>/give @p minecraft:skull 1 3 {SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{{ skin.name || '#' + skin.id}}",Lore:["头颅皮肤数据 #{{skin.id}}","生成于 {{(skin.timestamp*1000 | date : "medium")}}","使用 mineskin.jeansou.com"]}}</textarea>
                                     <button class="btn tooltipped" data-clipboard-target="#giveCommand1_12"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                                 <div ng-show="giveCommandVersion == '1_13'">
-                                    <label for="giveCommand1_13">玩家头 /give Command</label>
-                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_13" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"generated on {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"via MineSkin.org\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
+                                    <label for="giveCommand1_13">玩家头颅 /give Command</label>
+                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_13" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"皮肤纹理数据 #{{skin.id}}\"}","{\"text\":\"生成于 {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"使用 mineskin.jeansou.com\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
                                     <button class="btn tooltipped" data-clipboard-target="#giveCommand1_13"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                                 <div ng-show="giveCommandVersion == '1_16'">
-                                    <label for="giveCommand1_16">玩家头 /give Command</label>
-                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_16" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuidAsArray}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"Skin #{{skin.id}}\"}","{\"text\":\"generated on {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"via MineSkin.org\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
+                                    <label for="giveCommand1_16">玩家头颅 /give Command</label>
+                                    <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_16" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuidAsArray}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"皮肤纹理数据 #{{skin.id}}\"}","{\"text\":\"生成于 {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"使用 mineskin.jeansou.com\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
                                     <button class="btn tooltipped" data-clipboard-target="#giveCommand1_16"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                             </div>
@@ -159,7 +138,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row card-panel">
                 <h5 id="java">Java 代码</h5>
                 <div class="col s12">
@@ -167,17 +145,16 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="javaGameProfile">Java 游戏配置</label>
-                                <textarea style="min-height: 150px;max-width:100%;" id="javaGameProfile" class="materialize-textarea" readonly>// Skin #{{skin.id}} generated on {{(skin.timestamp*1000 | date : "medium")}} via MineSkin.jeansou.com
+                                <textarea style="min-height: 150px;max-width:100%;" id="javaGameProfile" class="materialize-textarea" readonly>// 皮肤纹理数据 #{{skin.id}} 生成于 {{(skin.timestamp*1000 | date : "medium")}} 使用 mineskin.jeansou.com
 GameProfile skin{{skin.id}} = new GameProfile(UUID.fromString("{{skin.data.uuid}}"), "skin{{skin.id}}");
 skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin.data.texture.value}}", "{{skin.data.texture.signature}}"));
             </textarea>
-                                <button class="btn tooltipped" data-clipboard-target="#javaGameProfile"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy</button>
+                                <button class="btn tooltipped" data-clipboard-target="#javaGameProfile"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="row card-panel">
                 <h5 id="citizens">Citizens 皮肤指令</h5>
                 <div class="col s12">
@@ -192,9 +169,7 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
                     </div>
                 </div>
             </div>
-
             <br/>
-
             <div class="row">
                 <div class="pull-left">
                     {{skin.views}} 次查看
@@ -207,23 +182,19 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
             </div>
         </div>
     </div>
-
     <a href="#" id="viewScrollBtn" style="position: fixed; left: 50%; bottom: 5px; opacity: 0.5; font-size: 50px; text-decoration: none; color: black; text-align: center; transform: translateX(-50%);">
         <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
     </a>
     <script>
         var clipboard = new Clipboard('.btn');
-
         function setTooltip(btn, message) {
             $(btn).tooltip({delay: 1, tooltip: message, position: "bottom"}).trigger("mouseenter")
         }
-
         function hideTooltip(btn) {
             setTimeout(function () {
                 $(btn).tooltip('remove');
             }, 5000);
         }
-
         $("#viewModal").on("scroll",function (e) {
             if (this.scrollTop > 10) {
                 $("#viewScrollBtn").hide();
@@ -235,14 +206,11 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
             $("#viewModal").animate({scrollTop: 200}, 500, "swing");
             ga("send", "event", "SkinView", "ScrollDown");
         });
-
         clipboard.on('success', function (e) {
             setTooltip(e.trigger, 'Copied!');
             hideTooltip(e.trigger);
-
             ga("send", "event", "SkinViewData", "CopyData", e.trigger.dataset.clipboardTarget);
         });
-
         clipboard.on('error', function (e) {
             setTooltip(e.trigger, 'Failed!');
             hideTooltip(e.trigger);
