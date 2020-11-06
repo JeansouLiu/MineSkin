@@ -1,7 +1,6 @@
 <div class="modal">
     <div class="modal-content" ng-init="refreshStats(true)">
-        <h4>Êı¾İ</h4>
-
+        <h4>æ•°æ®</h4>
         <div class="center" ng-show="!stats" style="padding:20px">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue-only">
@@ -17,20 +16,19 @@
                 </div>
             </div>
         </div>
-
         <div style="text-align: center; font-size: 20px;" ng-show="stats">
-            <strong>MineSkin</strong> ×Ü¹²ÒÑ¾­Éú³É <strong>{{stats.total | number}}</strong> ¸öÆ¤·ô,<br/>
-            <strong>{{stats.unique | number}}</strong> ¸öÊÇ¶ÀÒ»ÎŞ¶şµÄ!<br/>
+            <strong>MineSkin</strong> æ€»å…±å·²ç»ç”Ÿæˆ <strong>{{stats.total | number}}</strong> ä¸ªçš®è‚¤,<br/>
+            <strong>{{stats.unique | number}}</strong> ä¸ªæ˜¯ç‹¬ä¸€æ— äºŒçš„!<br/>
             <br/>
-            ÔÚ½ö½ö¶şÊ®ËÄĞ¡Ê±ÄÚ, MineSkin ÒÑ¾­Éú³ÉÁË <strong>{{stats.lastDay | number}}</strong> ¸öÆ¤·ô,<br/>
-            ×Ü¹²ÓĞ <strong>{{stats.lastMonth | number}}</strong> ¸öÆ¤·ôÔÚÉÏ¸öÔÂÉú³É¡¢ <strong>{{stats.lastYear | number}}</strong> ¸öÔÚÈ¥ÄêÉú³É,<br/>
-            ÔÚ½ö½ö 60 ·ÖÖÓÄÚÒÑÉú³É <strong>{{stats.lastHour | number}}</strong> ¸öÆ¤·ô!<br/>
+            åœ¨ä»…ä»…äºŒåå››å°æ—¶å†…, MineSkin å·²ç»ç”Ÿæˆäº† <strong>{{stats.lastDay | number}}</strong> ä¸ªçš®è‚¤,<br/>
+            æ€»å…±æœ‰ <strong>{{stats.lastMonth | number}}</strong> ä¸ªçš®è‚¤åœ¨ä¸Šä¸ªæœˆç”Ÿæˆã€ <strong>{{stats.lastYear | number}}</strong> ä¸ªåœ¨å»å¹´ç”Ÿæˆ,<br/>
+            åœ¨ä»…ä»… 60 åˆ†é’Ÿå†…å·²ç”Ÿæˆ <strong>{{stats.lastHour | number}}</strong> ä¸ªçš®è‚¤!<br/>
             <br/>
-            <strong>{{stats.genUpload / stats.unique * 100 | number: 0}}%</strong> µÄÆ¤·ô±»ÉÏ´«,<br/>
-            <strong>{{stats.genUrl / stats.unique * 100 | number: 0}}%</strong> µÄÆ¤·ô´ÓÍøÖ·ÉÏ´«<br/>
-            <strong>{{stats.genUser / stats.unique * 100 | number: 0}}%</strong> µÄÆ¤·ôÓÉ Minecraft ÓÃ»§ÃûÉú³É.<br/>
+            <strong>{{stats.genUpload / stats.unique * 100 | number: 0}}%</strong> çš„çš®è‚¤è¢«ä¸Šä¼ ,<br/>
+            <strong>{{stats.genUrl / stats.unique * 100 | number: 0}}%</strong> çš„çš®è‚¤ä»ç½‘å€ä¸Šä¼ <br/>
+            <strong>{{stats.genUser / stats.unique * 100 | number: 0}}%</strong> çš„çš®è‚¤ç”± Minecraft ç”¨æˆ·åç”Ÿæˆ.<br/>
             <br/>
-            ËùÓĞÒÑÉú³ÉµÄÆ¤·ô×Ü¹²±»²é¿´ÁË <strong>{{stats.views | number}}</strong> ´Î.<br/>
+            æ‰€æœ‰å·²ç”Ÿæˆçš„çš®è‚¤æ€»å…±è¢«æŸ¥çœ‹äº† <strong>{{stats.views | number}}</strong> æ¬¡.<br/>
             <br/>
         </div>
     </div>
