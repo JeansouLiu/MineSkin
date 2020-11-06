@@ -66,33 +66,33 @@
                         <div class="input-field col s12 m6">
                             <label for="skinId">皮肤 ID</label>
                             <input type="text" readonly id="skinId" ng-model="skin.id">
-                            <button class="btn tooltipped" data-clipboard-target="#skinId"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                            <button class="btn tooltipped" data-clipboard-target="#skinId" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                         <div class="input-field col s12 m6">
                             <label for="skinId">直链</label>
                             <input type="text" readonly id="skinLink" ng-model="'https://minesk.in/' + skin.id">
-                            <button class="btn tooltipped" data-clipboard-target="#skinLink"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                            <button class="btn tooltipped" data-clipboard-target="#skinLink" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="textureValue">纹理数据</label>
                             <input type="text" readonly id="textureValue" ng-model="skin.data.texture.value">
-                            <button class="btn tooltipped" data-clipboard-target="#textureValue"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                            <button class="btn tooltipped" data-clipboard-target="#textureValue" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="textureSignature">纹理签名</label>
                             <input type="text" readonly id="textureSignature" ng-model="skin.data.texture.signature">
-                            <button class="btn tooltipped" data-clipboard-target="#textureSignature"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                            <button class="btn tooltipped" data-clipboard-target="#textureSignature" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="textureUrl">纹理链接</label>
                             <input type="text" readonly id="textureUrl" ng-model="skin.data.texture.url">
-                            <button class="btn tooltipped" data-clipboard-target="#textureUrl"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                            <button class="btn tooltipped" data-clipboard-target="#textureUrl" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -121,17 +121,17 @@
                                 <div ng-show="giveCommandVersion == '1_12'">
                                     <label for="giveCommand1_12">头颅 /give 指令</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommandOld" class="materialize-textarea" readonly>/give @p minecraft:skull 1 3 {SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{{ skin.name || '#' + skin.id}}",Lore:["头颅皮肤数据 #{{skin.id}}","生成于 {{(skin.timestamp*1000 | date : "medium")}}","使用 mineskin.jeansou.com"]}}</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_12"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_12" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                                 <div ng-show="giveCommandVersion == '1_13'">
                                     <label for="giveCommand1_13">玩家头颅 /give Command</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_13" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuid}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"皮肤纹理数据 #{{skin.id}}\"}","{\"text\":\"生成于 {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"使用 mineskin.jeansou.com\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_13"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_13" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                                 <div ng-show="giveCommandVersion == '1_16'">
                                     <label for="giveCommand1_16">玩家头颅 /give Command</label>
                                     <textarea style="min-height: 150px;max-width:100%;" id="giveCommand1_16" class="materialize-textarea" readonly>give @p minecraft:player_head{SkullOwner:{Id:{{skin.data.uuidAsArray}},Properties:{textures:[{Value:"{{skin.data.texture.value}}",Signature:"{{skin.data.texture.signature}}"}]}},display:{Name:"{\"text\":\"{{ skin.name || '#' + skin.id}}\"}",Lore:["{\"text\":\"皮肤纹理数据 #{{skin.id}}\"}","{\"text\":\"生成于 {{(skin.timestamp*1000 | date : "medium")}}\"}","{\"text\":\"使用 mineskin.jeansou.com\"}","{\"text\":\"https://minesk.in/{{skin.id}}\"}"]}}</textarea>
-                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_16"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                    <button class="btn tooltipped" data-clipboard-target="#giveCommand1_16" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
 GameProfile skin{{skin.id}} = new GameProfile(UUID.fromString("{{skin.data.uuid}}"), "skin{{skin.id}}");
 skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin.data.texture.value}}", "{{skin.data.texture.signature}}"));
             </textarea>
-                                <button class="btn tooltipped" data-clipboard-target="#javaGameProfile"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                <button class="btn tooltipped" data-clipboard-target="#javaGameProfile" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ skin{{skin.id}}.getProperties().put("textures", new Property("textures", "{{skin
                             <div class="input-field col s12">
                                 <label for="citizensCommand">Citizens /npc skin 指令</label>
                                 <textarea style="min-height: 10px;max-width:100%;" id="citizensCommand" class="materialize-textarea" readonly>/npc skin --url https://minesk.in/{{ skin.id }}</textarea>
-                                <button class="btn tooltipped" data-clipboard-target="#citizensCommand"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
+                                <button class="btn tooltipped" data-clipboard-target="#citizensCommand" data-tooltip="复制"><i class="fa fa-clipboard" aria-hidden="true"></i> 复制</button>
                             </div>
                         </div>
                     </div>
