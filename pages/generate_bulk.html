@@ -12,6 +12,9 @@
                 <h3>皮肤 & 选项</h3>
                 <div class="col s12" id="allOptionsForm">
                     <h4>批量上传</h4>
+                    <div>
+                        这里可以批量上传皮肤并生成数据.
+                    </div>
                     <div class="row">
                         <div class="col s12">
                             <div class="row">
@@ -23,7 +26,7 @@
                                         <div ng-show="global.upload" ng-repeat="upload in global.upload track by $index" style="padding-top: 4px;">
                                             <img src="" ngf-thumbnail="upload" class="z-depth-1" style="height:128px;margin:2px;image-rendering: pixelated">
                                         </div>
-                                        <a ng-disabled="generating" class="btn" ng-click="global.upload=null;">X</a>
+                                        <a ng-show="global.upload" ng-disabled="generating" class="btn" ng-click="global.upload=null;">X</a>
                                     </div>
                                 </div>
                             </div>
@@ -55,8 +58,12 @@
                         <a ng-disabled="generating" class="btn" ng-click="addFromGlobal()">开始上传</a>
                     </div>
                 </div>
+                <br/>
                 <div class="col s12" id="uploadForm">
                     <h4>普通上传</h4>
+                    <div>
+                        如果需要为每个皮肤的生成设置不同的设置，请在这里上传.
+                    </div>
                     <div ng-repeat="skin in skins track by $index">
                         <br/>
                         <div class="row">
