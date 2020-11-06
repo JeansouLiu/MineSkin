@@ -109,6 +109,22 @@ mineskinApp.config(function ($stateProvider, $locationProvider, ngMetaProvider) 
                 }
             }
         })
+        .state("bulk", {
+            url: "/bulk",
+            views: {
+                'tab1': {
+                    templateUrl: "/pages/generate_bulk.html",
+                    controller: "bulkController",
+                }
+            },
+            data: {
+                meta: {
+                    title: "批量生成 | MineSkin",
+                    titleSuffix: "",
+                    image: "https://mineskin.jeansou.com/favicon.png"
+                }
+            }
+        })
         .state("index.stats", {
             url: "^/stats",
             onEnter: ["$state", "$stateParams", "ModalService", function ($state, $stateParams, ModalService) {
@@ -253,6 +269,8 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
     $scope.generateProgress = 0;
     $scope.generateAttempt = 0;
 
+    $scope.$storage = $localStorage;
+    
     $scope.materializeInit('tab1');
 
     $interval(function () {
@@ -380,11 +398,11 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
         setTimeout(function () {
             successAlert.close();
 
-            var recentSkins = $localStorage.recentSkins;
+            var recentSkins = $scope.storage.recentSkins;
             if (!recentSkins) recentSkins = [];
             recentSkins.unshift(data.id);
             if (recentSkins.length > 20) recentSkins.pop();
-            $localStorage.recentSkins = recentSkins;
+            $scope.storage.recentSkins = recentSkins;
 
             if ($stateParams.generateCallback) {
                 window.location = $stateParams.generateCallback.replace(":id", data.id);
@@ -436,6 +454,237 @@ mineskinApp.controller("indexController", ["$scope", "Upload", "$state", "$http"
 
                 if ($scope.generatorTimeout >= 0.1) {
                     $timeout($scope.refreshTimeout(), 1000);
+                }
+            }
+        });
+    };
+}]);
+
+mineskinApp.controller("bulkController", ["$scope", "Upload", "$state", "$http", "$timeout", "$interval", "$stateParams", "$localStorage", function ($scope, Upload, $state, $http, $timeout, $interval, $stateParams, $localStorage) {
+    console.info("bulkController")
+
+    let skinObjTemplate = {
+        upload: undefined,
+        url: undefined,
+        user: undefined,
+        privateUpload: false,
+        skinName: "",
+        skinModel: "steve"
+    }
+
+    $scope.skins = [
+        Object.assign({}, skinObjTemplate)
+    ];
+
+    $scope.addSkinInput = function () {
+        let last = $scope.skins[$scope.skins.length - 1];
+        let toAdd = Object.assign({}, skinObjTemplate); // clone
+        if (last) {
+            toAdd.privateUpload = last.privateUpload;
+            toAdd.skinModel = last.skinModel;
+        }
+        $scope.skins.push(toAdd);
+        $scope.materializeInit("tab1");
+    }
+
+    $scope.removeSkinInput = function (index) {
+        $scope.skins.splice(index, 1);
+    }
+
+    $scope.generating = false;
+    $scope.finished = false;
+    $scope.generateSeconds = 0;
+    $scope.generateTimer = null;
+    $scope.generateInterval = null;
+    $scope.generateProgress = 0;
+    $scope.generateAttempt = 0;
+    $scope.generateEstimateMinutes = 0;
+    $scope.successCount = 0;
+    $scope.errorCount = 0;
+
+    $scope.$storage = $localStorage;
+
+    $scope.materializeInit('tab1');
+
+    ///TODO
+
+    $scope.startGenerate = function () {
+        if ($scope.generating) return;
+        $scope.generating = true;
+        window.onbeforeunload = function(e) {
+            return '皮肤数据还在生成, 你确定要离开吗?';
+        };
+        console.log($scope.skins);
+
+        $scope.generateEstimateMinutes = Math.round((15 * $scope.skins.length / 60) * 10) / 10;
+
+        $scope.tryGenerateNext(0);
+    }
+
+    $scope.tryGenerateNext = function (nextIndex) {
+        $scope.generateProgress = nextIndex / $scope.skins.length * 100;
+        if (nextIndex >= $scope.skins.length) {
+            $scope.onFinished();
+        } else {
+            let delay = Math.max(4, $scope.generatorDelay) * ((1700 + (Math.random() * 1000)) + (Math.random() * 1000));
+            console.log("Will generate skin #" + (nextIndex + 1) + " in " + delay + "ms");
+            let nextSkin = $scope.skins[nextIndex];
+            $scope.generateInterval = $timeout(function () {
+                nextSkin.info = {};
+                if (!nextSkin.generateAttempt) nextSkin.generateAttempt = 0;
+                $scope.generateNext(nextSkin, function (err, data, doNotRetry) {
+                    let success = !err && data;
+
+                    nextSkin.info.data = data;
+                    nextSkin.info.error = err;
+
+                    if (success) {
+                        $scope.successCount++;
+                        var recentSkins = $scope.$storage.recentSkins;
+                        if (!recentSkins) recentSkins = [];
+                        recentSkins.unshift(data.id);
+                        if (recentSkins.length > 50) recentSkins.pop();
+                        $scope.$storage.recentSkins = recentSkins;
+
+                        $scope.tryGenerateNext(nextIndex + 1);
+                    } else {
+                        if (!doNotRetry && nextSkin.generateAttempt++ < 3) {
+                            $scope.tryGenerateNext(nextIndex);//try again
+                        } else {
+                            //skip
+                            $scope.tryGenerateNext(nextIndex + 1);
+                            $scope.errorCount++;
+                        }
+                    }
+                })
+            }, delay);
+        }
+    }
+
+    $scope.onFinished = function () {
+        //TODO
+        $scope.generating = false;
+        $scope.finished = true;
+        console.log("Finished!");
+        window.onbeforeunload = null;
+    }
+
+    $scope.generateNext = function (skin, cb) {
+        console.log("  URL:");
+        console.log(skin.url);
+
+        console.log("  Upload:");
+        console.log(skin.upload);
+
+        console.log("  User:");
+        console.log(skin.user);
+
+        if (!skin.url && !skin.upload && !skin.user) {
+            cb("未选择皮肤", null, true);
+            // just skip it
+            return;
+        }
+
+        if (skin.url) {
+            var genAlert = $scope.addAlert("从链接中提取皮肤数据中...", "info", 15000);
+            setTimeout(function () {
+                $http({
+                    url: apiBaseUrl + "/generate/url?url=" + skin.url + "&name=" + skin.skinName + "&model=" + skin.skinModel + "&visibility=" + (skin.privateUpload ? 1 : 0),
+                    method: "POST"
+                }).then(function (response) {
+                    console.log(response);
+                    if (!response.data.error) {
+                        cb(null, response.data);
+                    } else {
+                        cb(response.data.error, null);
+                    }
+                }, function (response) {
+                    console.log(response);
+                    cb(response.data.error, null);
+                });
+            }, 500);
+        } else if (skin.upload) {
+            var genAlert = $scope.addAlert("上传皮肤中...", "info", 15000);
+            setTimeout(function () {
+                Upload.upload({
+                    url: apiBaseUrl + "/generate/upload?name=" + skin.skinName + "&model=" + skin.skinModel + "&visibility=" + (skin.privateUpload ? 1 : 0),
+                    method: "POST",
+                    data: {file: skin.upload}
+                }).then(function (response) {
+                    console.log(response);
+                    if (!response.data.error) {
+                        cb(null, response.data);
+                    } else {
+                        cb(response.data.error, null);
+                    }
+                }, function (response) {
+                    console.log(response);
+                    cb(response.data.error, null);
+                });
+            }, 500);
+        } else if (skin.user) {
+            var skinUuid;
+
+            function generateUser(uuid) {
+                var genAlert = $scope.addAlert("加载皮肤数据中...", "info", 15000);
+                setTimeout(function () {
+                    $http({
+                        url: apiBaseUrl + "/generate/user/" + uuid + "?name=" + skin.skinName + "&model=" + skin.skinModel + "&visibility=" + (skin.privateUpload ? 1 : 0),
+                        method: "GET"
+                    }).then(function (response) {
+                        console.log(response);
+                        if (!response.data.error) {
+                            cb(null, response.data);
+                        } else {
+                            cb(response.data.error, null);
+                        }
+                    }, function (response) {
+                        console.log(response);
+                        cb(response.data.error, null);
+                    });
+                }, 500);
+            }
+
+            if (skin.user.length > 16) {// Possibly a UUID
+                if ((/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(skin.user)) || (/^[0-9a-f]{8}[0-9a-f]{4}[1-5][0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}$/i.test(skin.user))) {
+                    skinUuid = $scope.skinUser;
+                    generateUser(skinUuid);
+                } else {
+                    cb("invalid uuid", null, true);
+                }
+            } else {
+                var validateAlert = $scope.addAlert("验证用户名有效性...", "info", 10000);
+                $.ajax({
+                    url: apiBaseUrl + "/validate/user/" + skin.user,
+                    success: function (data) {
+                        if (data.valid) {
+                            $scope.addAlert("用户名有效", "success", 1000);
+                            skinUuid = data.uuid;
+                            generateUser(skinUuid);
+                        } else {
+                            $scope.addAlert("用户名无效", "danger", 10000);
+                            cb("无效用户名", null, true);
+                        }
+                        validateAlert.close();
+                    }
+                });
+            }
+        }
+    };
+
+
+    $scope.generatorTimeout = 0;
+    $scope.generatorDelay = 0;
+
+    $scope.refreshTimeout = function () {
+        $.ajax({
+            url: apiBaseUrl + "/get/delay",
+            success: function (data) {
+                $scope.generatorDelay = data.delay;
+                $scope.generatorTimeout = data.nextRelative;
+
+                if ($scope.generatorTimeout >= 0.1) {
+                    $timeout($scope.refreshTimeout(), 10000);
                 }
             }
         });
@@ -1038,7 +1287,7 @@ mineskinApp.controller("skinController", ["$scope", "$timeout", "$http", "$state
 function materializeBaseInit() {
     $('select').material_select();
     // https://stackoverflow.com/a/56725559/6257838
-    document.querySelectorAll('.select-wrapper').forEach(t => t.addEventListener('click', e=>e.stopPropagation()))
+    document.querySelectorAll('.select-wrapper').forEach(t => t.addEventListener('click', e => e.stopPropagation()))
     $('.tooltipped').tooltip();
     Materialize.updateTextFields();
 }
@@ -1079,4 +1328,5 @@ function getInt32ForUUID(uuid) {
 function formatInt32UUID(uuidInt32) {
     return `[I;${uuidInt32[0]},${uuidInt32[1]},${uuidInt32[2]},${uuidInt32[3]}]`;
 }
+
 ///
