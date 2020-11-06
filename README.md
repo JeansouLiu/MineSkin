@@ -1,3 +1,3 @@
-# mineskin.org
+# mineskin
 
-[mineskin.org](https://mineskin.org) 中文版网站源码.
+[MineSkin](https://mineskin.jeansou.com) 中文版网站源码.
